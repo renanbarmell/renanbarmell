@@ -1,404 +1,415 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+  <script src="https://smartbirdly.com.br/sdk/survey.js?key=415c284847b7807ed6a673841ead4678" async></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Produtos — SportShop</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
-    @keyframes slideIn { from { transform: translateX(100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+    @keyframes slideIn {
+      from {
+        transform: translateX(100px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
   </style>
 </head>
+
 <body>
 
-<div class="topbar">
+  <div class="topbar">
     Frete grátis para compras acima de R$ 299 &nbsp;|&nbsp;
     <a href="#">Baixe nosso App</a> &nbsp;|&nbsp;
     <a href="#">Atendimento</a>
-</div>
-
-<header>
-  <div class="header-main">
-    <a href="index.html" class="logo">
-      <span class="logo-text">Sport<span>Shop</span></span>
-    </a>
-    <form class="search-bar" onsubmit="return false;">
-      <input type="text" placeholder="Buscar produtos, marcas e categorias...">
-      <button type="submit">🔍</button>
-    </form>
-    <div class="header-actions">
-      <a href="#">
-        <span class="icon">👤</span>
-        <span>Entrar</span>
-      </a>
-      <a href="#">
-        <span class="icon">❤️</span>
-        <span>Favoritos</span>
-      </a>
-      <a href="carrinho.html" class="cart-badge">
-        <span class="icon">🛒</span>
-        <span>Carrinho</span>
-        <span class="badge" style="display:none;">0</span>
-      </a>
-    </div>
   </div>
-  <nav>
-    <div class="nav-inner">
-      <a href="index.html">Home</a>
-      <a href="produtos.html" class="active">Futebol</a>
-      <a href="produtos.html">Corrida</a>
-      <a href="produtos.html">Academia</a>
-      <a href="produtos.html">Tênis</a>
-      <a href="produtos.html">Vestuário</a>
-      <a href="produtos.html">Outdoor</a>
-      <a href="produtos.html">Natação</a>
-      <a href="produtos.html">Ciclismo</a>
-      <a href="produtos.html">Ofertas</a>
+
+  <header>
+    <div class="header-main">
+      <a href="index.html" class="logo">
+        <span class="logo-text">Sport<span>Shop</span></span>
+      </a>
+      <form class="search-bar" onsubmit="return false;">
+        <input type="text" placeholder="Buscar produtos, marcas e categorias...">
+        <button type="submit">🔍</button>
+      </form>
+      <div class="header-actions">
+        <a href="#">
+          <span class="icon">👤</span>
+          <span>Entrar</span>
+        </a>
+        <a href="#">
+          <span class="icon">❤️</span>
+          <span>Favoritos</span>
+        </a>
+        <a href="carrinho.html" class="cart-badge">
+          <span class="icon">🛒</span>
+          <span>Carrinho</span>
+          <span class="badge" style="display:none;">0</span>
+        </a>
+      </div>
     </div>
+    <nav>
+      <div class="nav-inner">
+        <a href="index.html">Home</a>
+        <a href="produtos.html" class="active">Futebol</a>
+        <a href="produtos.html">Corrida</a>
+        <a href="produtos.html">Academia</a>
+        <a href="produtos.html">Tênis</a>
+        <a href="produtos.html">Vestuário</a>
+        <a href="produtos.html">Outdoor</a>
+        <a href="produtos.html">Natação</a>
+        <a href="produtos.html">Ciclismo</a>
+        <a href="produtos.html">Ofertas</a>
+      </div>
+    </nav>
+  </header>
+
+  <nav class="breadcrumb" aria-label="Navegação estrutural">
+    <a href="index.html">Home</a>
+    <span>›</span>
+    <span>Todos os Produtos</span>
   </nav>
-</header>
 
-<nav class="breadcrumb" aria-label="Navegação estrutural">
-  <a href="index.html">Home</a>
-  <span>›</span>
-  <span>Todos os Produtos</span>
-</nav>
+  <main class="products-layout">
+    <!-- SIDEBAR FILTROS -->
+    <aside class="sidebar">
+      <div class="sidebar-title">Filtros</div>
 
-<main class="products-layout">
-  <!-- SIDEBAR FILTROS -->
-  <aside class="sidebar">
-    <div class="sidebar-title">Filtros</div>
-
-    <div class="filter-group">
-      <div class="filter-group-title">Categoria</div>
-      <label class="filter-option"><input type="checkbox" checked> <label>Futebol</label></label>
-      <label class="filter-option"><input type="checkbox"> <label>Corrida</label></label>
-      <label class="filter-option"><input type="checkbox"> <label>Academia</label></label>
-      <label class="filter-option"><input type="checkbox"> <label>Natação</label></label>
-      <label class="filter-option"><input type="checkbox"> <label>Ciclismo</label></label>
-    </div>
-
-    <div class="filter-group">
-      <div class="filter-group-title">Marca</div>
-      <label class="filter-option"><input type="checkbox" checked> <label>Nike</label></label>
-      <label class="filter-option"><input type="checkbox" checked> <label>Adidas</label></label>
-      <label class="filter-option"><input type="checkbox"> <label>Puma</label></label>
-      <label class="filter-option"><input type="checkbox"> <label>New Balance</label></label>
-      <label class="filter-option"><input type="checkbox"> <label>Under Armour</label></label>
-    </div>
-
-    <div class="filter-group">
-      <div class="filter-group-title">Faixa de Preço</div>
-      <div class="price-range">
-        <input type="text" placeholder="Min" value="0">
-        <span>—</span>
-        <input type="text" placeholder="Max" value="5000">
+      <div class="filter-group">
+        <div class="filter-group-title">Categoria</div>
+        <label class="filter-option"><input type="checkbox" checked> <label>Futebol</label></label>
+        <label class="filter-option"><input type="checkbox"> <label>Corrida</label></label>
+        <label class="filter-option"><input type="checkbox"> <label>Academia</label></label>
+        <label class="filter-option"><input type="checkbox"> <label>Natação</label></label>
+        <label class="filter-option"><input type="checkbox"> <label>Ciclismo</label></label>
       </div>
-      <button class="btn-filter">Aplicar</button>
-    </div>
 
-    <div class="filter-group">
-      <div class="filter-group-title">Tamanho</div>
-      <label class="filter-option"><input type="checkbox"> <label>P</label></label>
-      <label class="filter-option"><input type="checkbox"> <label>M</label></label>
-      <label class="filter-option"><input type="checkbox"> <label>G</label></label>
-      <label class="filter-option"><input type="checkbox"> <label>GG</label></label>
-    </div>
+      <div class="filter-group">
+        <div class="filter-group-title">Marca</div>
+        <label class="filter-option"><input type="checkbox" checked> <label>Nike</label></label>
+        <label class="filter-option"><input type="checkbox" checked> <label>Adidas</label></label>
+        <label class="filter-option"><input type="checkbox"> <label>Puma</label></label>
+        <label class="filter-option"><input type="checkbox"> <label>New Balance</label></label>
+        <label class="filter-option"><input type="checkbox"> <label>Under Armour</label></label>
+      </div>
 
-    <div class="filter-group">
-      <div class="filter-group-title">Número</div>
-      <label class="filter-option"><input type="checkbox"> <label>37</label></label>
-      <label class="filter-option"><input type="checkbox"> <label>38</label></label>
-      <label class="filter-option"><input type="checkbox"> <label>39</label></label>
-      <label class="filter-option"><input type="checkbox"> <label>40</label></label>
-      <label class="filter-option"><input type="checkbox"> <label>41</label></label>
-      <label class="filter-option"><input type="checkbox"> <label>42</label></label>
-      <label class="filter-option"><input type="checkbox"> <label>43</label></label>
-    </div>
-  </aside>
-
-  <!-- PRODUTOS -->
-  <div class="products-main">
-    <div class="products-toolbar">
-      <span class="products-count">Mostrando <strong>24</strong> de <strong>124</strong> produtos</span>
-      <select class="sort-select">
-        <option>Mais relevantes</option>
-        <option>Menor preço</option>
-        <option>Maior preço</option>
-        <option>Maior desconto</option>
-        <option>Mais vendidos</option>
-        <option>Mais novos</option>
-      </select>
-    </div>
-
-    <div class="products-grid-full">
-
-      <div class="product-card">
-        <div class="product-img"><span>👟</span><span class="product-discount">-45%</span><span class="product-badge">Novo</span></div>
-        <div class="product-info">
-          <p class="product-brand">Nike</p>
-          <p class="product-name">Tênis Air Max 270 Running Masculino</p>
-          <div class="product-price">
-            <span class="price-old">R$ 599,90</span>
-            <div class="price-new">R$ 329,90</div>
-            <span class="price-installment">ou <strong>10x R$ 32,99</strong></span>
-          </div>
-          <a href="carrinho.html" class="btn-add-cart"
-             data-add-cart data-id="p1" data-name="Nike Air Max 270"
-             data-brand="Nike" data-price="329.90" data-emoji="👟">
-            Adicionar ao Carrinho
-          </a>
+      <div class="filter-group">
+        <div class="filter-group-title">Faixa de Preço</div>
+        <div class="price-range">
+          <input type="text" placeholder="Min" value="0">
+          <span>—</span>
+          <input type="text" placeholder="Max" value="5000">
         </div>
+        <button class="btn-filter">Aplicar</button>
       </div>
 
-      <div class="product-card">
-        <div class="product-img"><span>⚽</span><span class="product-discount">-30%</span></div>
-        <div class="product-info">
-          <p class="product-brand">Adidas</p>
-          <p class="product-name">Chuteira Predator Accuracy Campo FG</p>
-          <div class="product-price">
-            <span class="price-old">R$ 749,90</span>
-            <div class="price-new">R$ 524,90</div>
-            <span class="price-installment">ou <strong>10x R$ 52,49</strong></span>
+      <div class="filter-group">
+        <div class="filter-group-title">Tamanho</div>
+        <label class="filter-option"><input type="checkbox"> <label>P</label></label>
+        <label class="filter-option"><input type="checkbox"> <label>M</label></label>
+        <label class="filter-option"><input type="checkbox"> <label>G</label></label>
+        <label class="filter-option"><input type="checkbox"> <label>GG</label></label>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-group-title">Número</div>
+        <label class="filter-option"><input type="checkbox"> <label>37</label></label>
+        <label class="filter-option"><input type="checkbox"> <label>38</label></label>
+        <label class="filter-option"><input type="checkbox"> <label>39</label></label>
+        <label class="filter-option"><input type="checkbox"> <label>40</label></label>
+        <label class="filter-option"><input type="checkbox"> <label>41</label></label>
+        <label class="filter-option"><input type="checkbox"> <label>42</label></label>
+        <label class="filter-option"><input type="checkbox"> <label>43</label></label>
+      </div>
+    </aside>
+
+    <!-- PRODUTOS -->
+    <div class="products-main">
+      <div class="products-toolbar">
+        <span class="products-count">Mostrando <strong>24</strong> de <strong>124</strong> produtos</span>
+        <select class="sort-select">
+          <option>Mais relevantes</option>
+          <option>Menor preço</option>
+          <option>Maior preço</option>
+          <option>Maior desconto</option>
+          <option>Mais vendidos</option>
+          <option>Mais novos</option>
+        </select>
+      </div>
+
+      <div class="products-grid-full">
+
+        <div class="product-card">
+          <div class="product-img"><span>👟</span><span class="product-discount">-45%</span><span
+              class="product-badge">Novo</span></div>
+          <div class="product-info">
+            <p class="product-brand">Nike</p>
+            <p class="product-name">Tênis Air Max 270 Running Masculino</p>
+            <div class="product-price">
+              <span class="price-old">R$ 599,90</span>
+              <div class="price-new">R$ 329,90</div>
+              <span class="price-installment">ou <strong>10x R$ 32,99</strong></span>
+            </div>
+            <a href="carrinho.html" class="btn-add-cart" data-add-cart data-id="p1" data-name="Nike Air Max 270"
+              data-brand="Nike" data-price="329.90" data-emoji="👟">
+              Adicionar ao Carrinho
+            </a>
           </div>
-          <a href="carrinho.html" class="btn-add-cart"
-             data-add-cart data-id="p2" data-name="Adidas Predator Accuracy"
-             data-brand="Adidas" data-price="524.90" data-emoji="⚽">
-            Adicionar ao Carrinho
-          </a>
         </div>
-      </div>
 
-      <div class="product-card">
-        <div class="product-img"><span>🏋️</span><span class="product-discount">-20%</span></div>
-        <div class="product-info">
-          <p class="product-brand">Under Armour</p>
-          <p class="product-name">Camiseta Compression HeatGear</p>
-          <div class="product-price">
-            <span class="price-old">R$ 199,90</span>
-            <div class="price-new">R$ 159,90</div>
-            <span class="price-installment">ou <strong>5x R$ 31,98</strong></span>
+        <div class="product-card">
+          <div class="product-img"><span>⚽</span><span class="product-discount">-30%</span></div>
+          <div class="product-info">
+            <p class="product-brand">Adidas</p>
+            <p class="product-name">Chuteira Predator Accuracy Campo FG</p>
+            <div class="product-price">
+              <span class="price-old">R$ 749,90</span>
+              <div class="price-new">R$ 524,90</div>
+              <span class="price-installment">ou <strong>10x R$ 52,49</strong></span>
+            </div>
+            <a href="carrinho.html" class="btn-add-cart" data-add-cart data-id="p2" data-name="Adidas Predator Accuracy"
+              data-brand="Adidas" data-price="524.90" data-emoji="⚽">
+              Adicionar ao Carrinho
+            </a>
           </div>
-          <a href="carrinho.html" class="btn-add-cart"
-             data-add-cart data-id="p3" data-name="UA HeatGear"
-             data-brand="Under Armour" data-price="159.90" data-emoji="🏋️">
-            Adicionar ao Carrinho
-          </a>
         </div>
-      </div>
 
-      <div class="product-card">
-        <div class="product-img"><span>🚴</span><span class="product-badge">Destaque</span></div>
-        <div class="product-info">
-          <p class="product-brand">Caloi</p>
-          <p class="product-name">Bicicleta Speed Elite Carbon 21v</p>
-          <div class="product-price">
-            <span class="price-old">R$ 3.499,90</span>
-            <div class="price-new">R$ 2.899,90</div>
-            <span class="price-installment">ou <strong>12x R$ 241,66</strong></span>
+        <div class="product-card">
+          <div class="product-img"><span>🏋️</span><span class="product-discount">-20%</span></div>
+          <div class="product-info">
+            <p class="product-brand">Under Armour</p>
+            <p class="product-name">Camiseta Compression HeatGear</p>
+            <div class="product-price">
+              <span class="price-old">R$ 199,90</span>
+              <div class="price-new">R$ 159,90</div>
+              <span class="price-installment">ou <strong>5x R$ 31,98</strong></span>
+            </div>
+            <a href="carrinho.html" class="btn-add-cart" data-add-cart data-id="p3" data-name="UA HeatGear"
+              data-brand="Under Armour" data-price="159.90" data-emoji="🏋️">
+              Adicionar ao Carrinho
+            </a>
           </div>
-          <a href="carrinho.html" class="btn-add-cart"
-             data-add-cart data-id="p4" data-name="Caloi Elite Carbon"
-             data-brand="Caloi" data-price="2899.90" data-emoji="🚴">
-            Adicionar ao Carrinho
-          </a>
         </div>
-      </div>
 
-      <div class="product-card">
-        <div class="product-img"><span>👕</span><span class="product-discount">-25%</span></div>
-        <div class="product-info">
-          <p class="product-brand">Puma</p>
-          <p class="product-name">Camisa Puma Ferrari Team 2024</p>
-          <div class="product-price">
-            <span class="price-old">R$ 289,90</span>
-            <div class="price-new">R$ 217,90</div>
-            <span class="price-installment">ou <strong>7x R$ 31,13</strong></span>
+        <div class="product-card">
+          <div class="product-img"><span>🚴</span><span class="product-badge">Destaque</span></div>
+          <div class="product-info">
+            <p class="product-brand">Caloi</p>
+            <p class="product-name">Bicicleta Speed Elite Carbon 21v</p>
+            <div class="product-price">
+              <span class="price-old">R$ 3.499,90</span>
+              <div class="price-new">R$ 2.899,90</div>
+              <span class="price-installment">ou <strong>12x R$ 241,66</strong></span>
+            </div>
+            <a href="carrinho.html" class="btn-add-cart" data-add-cart data-id="p4" data-name="Caloi Elite Carbon"
+              data-brand="Caloi" data-price="2899.90" data-emoji="🚴">
+              Adicionar ao Carrinho
+            </a>
           </div>
-          <a href="carrinho.html" class="btn-add-cart"
-             data-add-cart data-id="p5" data-name="Puma Ferrari Team"
-             data-brand="Puma" data-price="217.90" data-emoji="👕">
-            Adicionar ao Carrinho
-          </a>
         </div>
-      </div>
 
-      <div class="product-card">
-        <div class="product-img"><span>🥊</span><span class="product-badge">Novo</span></div>
-        <div class="product-info">
-          <p class="product-brand">Everlast</p>
-          <p class="product-name">Luva de Boxe Pro Training 14oz</p>
-          <div class="product-price">
-            <div class="price-new">R$ 189,90</div>
-            <span class="price-installment">ou <strong>6x R$ 31,65</strong></span>
+        <div class="product-card">
+          <div class="product-img"><span>👕</span><span class="product-discount">-25%</span></div>
+          <div class="product-info">
+            <p class="product-brand">Puma</p>
+            <p class="product-name">Camisa Puma Ferrari Team 2024</p>
+            <div class="product-price">
+              <span class="price-old">R$ 289,90</span>
+              <div class="price-new">R$ 217,90</div>
+              <span class="price-installment">ou <strong>7x R$ 31,13</strong></span>
+            </div>
+            <a href="carrinho.html" class="btn-add-cart" data-add-cart data-id="p5" data-name="Puma Ferrari Team"
+              data-brand="Puma" data-price="217.90" data-emoji="👕">
+              Adicionar ao Carrinho
+            </a>
           </div>
-          <a href="carrinho.html" class="btn-add-cart"
-             data-add-cart data-id="p6" data-name="Everlast Luva Pro"
-             data-brand="Everlast" data-price="189.90" data-emoji="🥊">
-            Adicionar ao Carrinho
-          </a>
         </div>
-      </div>
 
-      <div class="product-card">
-        <div class="product-img"><span>🏊</span><span class="product-discount">-15%</span></div>
-        <div class="product-info">
-          <p class="product-brand">Speedo</p>
-          <p class="product-name">Óculos de Natação Hydrospex Classic</p>
-          <div class="product-price">
-            <span class="price-old">R$ 89,90</span>
-            <div class="price-new">R$ 76,40</div>
-            <span class="price-installment">ou <strong>3x R$ 25,47</strong></span>
+        <div class="product-card">
+          <div class="product-img"><span>🥊</span><span class="product-badge">Novo</span></div>
+          <div class="product-info">
+            <p class="product-brand">Everlast</p>
+            <p class="product-name">Luva de Boxe Pro Training 14oz</p>
+            <div class="product-price">
+              <div class="price-new">R$ 189,90</div>
+              <span class="price-installment">ou <strong>6x R$ 31,65</strong></span>
+            </div>
+            <a href="carrinho.html" class="btn-add-cart" data-add-cart data-id="p6" data-name="Everlast Luva Pro"
+              data-brand="Everlast" data-price="189.90" data-emoji="🥊">
+              Adicionar ao Carrinho
+            </a>
           </div>
-          <a href="carrinho.html" class="btn-add-cart"
-             data-add-cart data-id="p7" data-name="Speedo Hydrospex"
-             data-brand="Speedo" data-price="76.40" data-emoji="🏊">
-            Adicionar ao Carrinho
-          </a>
         </div>
-      </div>
 
-      <div class="product-card">
-        <div class="product-img"><span>🎽</span><span class="product-discount">-35%</span></div>
-        <div class="product-info">
-          <p class="product-brand">Asics</p>
-          <p class="product-name">Shorts Woven 2-in-1 Running Masculino</p>
-          <div class="product-price">
-            <span class="price-old">R$ 179,90</span>
-            <div class="price-new">R$ 116,90</div>
-            <span class="price-installment">ou <strong>4x R$ 29,23</strong></span>
+        <div class="product-card">
+          <div class="product-img"><span>🏊</span><span class="product-discount">-15%</span></div>
+          <div class="product-info">
+            <p class="product-brand">Speedo</p>
+            <p class="product-name">Óculos de Natação Hydrospex Classic</p>
+            <div class="product-price">
+              <span class="price-old">R$ 89,90</span>
+              <div class="price-new">R$ 76,40</div>
+              <span class="price-installment">ou <strong>3x R$ 25,47</strong></span>
+            </div>
+            <a href="carrinho.html" class="btn-add-cart" data-add-cart data-id="p7" data-name="Speedo Hydrospex"
+              data-brand="Speedo" data-price="76.40" data-emoji="🏊">
+              Adicionar ao Carrinho
+            </a>
           </div>
-          <a href="carrinho.html" class="btn-add-cart"
-             data-add-cart data-id="p8" data-name="Asics Shorts Woven"
-             data-brand="Asics" data-price="116.90" data-emoji="🎽">
-            Adicionar ao Carrinho
-          </a>
         </div>
-      </div>
 
-      <div class="product-card">
-        <div class="product-img"><span>👟</span><span class="product-discount">-40%</span></div>
-        <div class="product-info">
-          <p class="product-brand">New Balance</p>
-          <p class="product-name">Tênis 574 Classic Retro Unissex</p>
-          <div class="product-price">
-            <span class="price-old">R$ 449,90</span>
-            <div class="price-new">R$ 269,90</div>
-            <span class="price-installment">ou <strong>9x R$ 29,99</strong></span>
+        <div class="product-card">
+          <div class="product-img"><span>🎽</span><span class="product-discount">-35%</span></div>
+          <div class="product-info">
+            <p class="product-brand">Asics</p>
+            <p class="product-name">Shorts Woven 2-in-1 Running Masculino</p>
+            <div class="product-price">
+              <span class="price-old">R$ 179,90</span>
+              <div class="price-new">R$ 116,90</div>
+              <span class="price-installment">ou <strong>4x R$ 29,23</strong></span>
+            </div>
+            <a href="carrinho.html" class="btn-add-cart" data-add-cart data-id="p8" data-name="Asics Shorts Woven"
+              data-brand="Asics" data-price="116.90" data-emoji="🎽">
+              Adicionar ao Carrinho
+            </a>
           </div>
-          <a href="carrinho.html" class="btn-add-cart"
-             data-add-cart data-id="p9" data-name="NB 574 Classic"
-             data-brand="New Balance" data-price="269.90" data-emoji="👟">
-            Adicionar ao Carrinho
-          </a>
         </div>
-      </div>
 
-      <div class="product-card">
-        <div class="product-img"><span>⚽</span></div>
-        <div class="product-info">
-          <p class="product-brand">Nike</p>
-          <p class="product-name">Bola Campo Premier League Strike</p>
-          <div class="product-price">
-            <div class="price-new">R$ 149,90</div>
-            <span class="price-installment">ou <strong>5x R$ 29,98</strong></span>
+        <div class="product-card">
+          <div class="product-img"><span>👟</span><span class="product-discount">-40%</span></div>
+          <div class="product-info">
+            <p class="product-brand">New Balance</p>
+            <p class="product-name">Tênis 574 Classic Retro Unissex</p>
+            <div class="product-price">
+              <span class="price-old">R$ 449,90</span>
+              <div class="price-new">R$ 269,90</div>
+              <span class="price-installment">ou <strong>9x R$ 29,99</strong></span>
+            </div>
+            <a href="carrinho.html" class="btn-add-cart" data-add-cart data-id="p9" data-name="NB 574 Classic"
+              data-brand="New Balance" data-price="269.90" data-emoji="👟">
+              Adicionar ao Carrinho
+            </a>
           </div>
-          <a href="carrinho.html" class="btn-add-cart"
-             data-add-cart data-id="p10" data-name="Nike Bola Premier"
-             data-brand="Nike" data-price="149.90" data-emoji="⚽">
-            Adicionar ao Carrinho
-          </a>
         </div>
-      </div>
 
-      <div class="product-card">
-        <div class="product-img"><span>🧢</span><span class="product-discount">-10%</span></div>
-        <div class="product-info">
-          <p class="product-brand">Mizuno</p>
-          <p class="product-name">Boné Dry Acelerate Running</p>
-          <div class="product-price">
-            <span class="price-old">R$ 99,90</span>
-            <div class="price-new">R$ 89,90</div>
-            <span class="price-installment">ou <strong>3x R$ 29,97</strong></span>
+        <div class="product-card">
+          <div class="product-img"><span>⚽</span></div>
+          <div class="product-info">
+            <p class="product-brand">Nike</p>
+            <p class="product-name">Bola Campo Premier League Strike</p>
+            <div class="product-price">
+              <div class="price-new">R$ 149,90</div>
+              <span class="price-installment">ou <strong>5x R$ 29,98</strong></span>
+            </div>
+            <a href="carrinho.html" class="btn-add-cart" data-add-cart data-id="p10" data-name="Nike Bola Premier"
+              data-brand="Nike" data-price="149.90" data-emoji="⚽">
+              Adicionar ao Carrinho
+            </a>
           </div>
-          <a href="carrinho.html" class="btn-add-cart"
-             data-add-cart data-id="p11" data-name="Mizuno Boné Dry"
-             data-brand="Mizuno" data-price="89.90" data-emoji="🧢">
-            Adicionar ao Carrinho
-          </a>
         </div>
-      </div>
 
-      <div class="product-card">
-        <div class="product-img"><span>🥋</span><span class="product-badge">Novo</span></div>
-        <div class="product-info">
-          <p class="product-brand">Venum</p>
-          <p class="product-name">Kimono BJJ Contender 2.0 Adulto</p>
-          <div class="product-price">
-            <div class="price-new">R$ 399,90</div>
-            <span class="price-installment">ou <strong>10x R$ 39,99</strong></span>
+        <div class="product-card">
+          <div class="product-img"><span>🧢</span><span class="product-discount">-10%</span></div>
+          <div class="product-info">
+            <p class="product-brand">Mizuno</p>
+            <p class="product-name">Boné Dry Acelerate Running</p>
+            <div class="product-price">
+              <span class="price-old">R$ 99,90</span>
+              <div class="price-new">R$ 89,90</div>
+              <span class="price-installment">ou <strong>3x R$ 29,97</strong></span>
+            </div>
+            <a href="carrinho.html" class="btn-add-cart" data-add-cart data-id="p11" data-name="Mizuno Boné Dry"
+              data-brand="Mizuno" data-price="89.90" data-emoji="🧢">
+              Adicionar ao Carrinho
+            </a>
           </div>
-          <a href="carrinho.html" class="btn-add-cart"
-             data-add-cart data-id="p12" data-name="Venum Kimono BJJ"
-             data-brand="Venum" data-price="399.90" data-emoji="🥋">
-            Adicionar ao Carrinho
-          </a>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img"><span>🥋</span><span class="product-badge">Novo</span></div>
+          <div class="product-info">
+            <p class="product-brand">Venum</p>
+            <p class="product-name">Kimono BJJ Contender 2.0 Adulto</p>
+            <div class="product-price">
+              <div class="price-new">R$ 399,90</div>
+              <span class="price-installment">ou <strong>10x R$ 39,99</strong></span>
+            </div>
+            <a href="carrinho.html" class="btn-add-cart" data-add-cart data-id="p12" data-name="Venum Kimono BJJ"
+              data-brand="Venum" data-price="399.90" data-emoji="🥋">
+              Adicionar ao Carrinho
+            </a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</main>
+  </main>
 
-<div class="benefits-bar">
-  <div class="benefits-inner">
-    <div class="benefit-item"><span class="benefit-icon">🚚</span><div class="benefit-text"><strong>Frete Grátis</strong><span>Acima de R$ 299</span></div></div>
-    <div class="benefit-item"><span class="benefit-icon">🔒</span><div class="benefit-text"><strong>Compra Segura</strong><span>100% protegido</span></div></div>
-    <div class="benefit-item"><span class="benefit-icon">↩️</span><div class="benefit-text"><strong>Troca Fácil</strong><span>Até 30 dias</span></div></div>
-    <div class="benefit-item"><span class="benefit-icon">💳</span><div class="benefit-text"><strong>Parcele em 10x</strong><span>Sem juros</span></div></div>
-  </div>
-</div>
-
-<footer>
-  <div class="footer-top">
-    <div class="footer-brand">
-      <div class="logo-text">Sport<span>Shop</span></div>
-      <p>A maior loja de artigos esportivos do Brasil.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Institucional</h4>
-      <ul>
-        <li><a href="#">Sobre nós</a></li>
-        <li><a href="#">Trabalhe conosco</a></li>
-        <li><a href="#">Imprensa</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Atendimento</h4>
-      <ul>
-        <li><a href="#">Central de ajuda</a></li>
-        <li><a href="#">Devolução e troca</a></li>
-        <li><a href="#">Fale conosco</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Esportes</h4>
-      <ul>
-        <li><a href="produtos.html">Futebol</a></li>
-        <li><a href="produtos.html">Corrida</a></li>
-        <li><a href="produtos.html">Academia</a></li>
-      </ul>
+  <div class="benefits-bar">
+    <div class="benefits-inner">
+      <div class="benefit-item"><span class="benefit-icon">🚚</span>
+        <div class="benefit-text"><strong>Frete Grátis</strong><span>Acima de R$ 299</span></div>
+      </div>
+      <div class="benefit-item"><span class="benefit-icon">🔒</span>
+        <div class="benefit-text"><strong>Compra Segura</strong><span>100% protegido</span></div>
+      </div>
+      <div class="benefit-item"><span class="benefit-icon">↩️</span>
+        <div class="benefit-text"><strong>Troca Fácil</strong><span>Até 30 dias</span></div>
+      </div>
+      <div class="benefit-item"><span class="benefit-icon">💳</span>
+        <div class="benefit-text"><strong>Parcele em 10x</strong><span>Sem juros</span></div>
+      </div>
     </div>
   </div>
-  <div class="footer-bottom">
-    <span>© 2025 SportShop — Todos os direitos reservados</span>
-    <div class="social-links">
-      <a href="#" title="Instagram">📷</a>
-      <a href="#" title="Facebook">👥</a>
-      <a href="#" title="YouTube">▶️</a>
-    </div>
-  </div>
-</footer>
 
-<script src="js/main.js"></script>
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo-text">Sport<span>Shop</span></div>
+        <p>A maior loja de artigos esportivos do Brasil.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Institucional</h4>
+        <ul>
+          <li><a href="#">Sobre nós</a></li>
+          <li><a href="#">Trabalhe conosco</a></li>
+          <li><a href="#">Imprensa</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Atendimento</h4>
+        <ul>
+          <li><a href="#">Central de ajuda</a></li>
+          <li><a href="#">Devolução e troca</a></li>
+          <li><a href="#">Fale conosco</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Esportes</h4>
+        <ul>
+          <li><a href="produtos.html">Futebol</a></li>
+          <li><a href="produtos.html">Corrida</a></li>
+          <li><a href="produtos.html">Academia</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 SportShop — Todos os direitos reservados</span>
+      <div class="social-links">
+        <a href="#" title="Instagram">📷</a>
+        <a href="#" title="Facebook">👥</a>
+        <a href="#" title="YouTube">▶️</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
 </body>
+
 </html>
