@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SportShop — Esportes e Fitness</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    @keyframes slideIn { from { transform: translateX(100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+    Frete grátis para compras acima de R$ 299 &nbsp;|&nbsp;
+    <a href="#">Baixe nosso App</a> &nbsp;|&nbsp;
+    <a href="#">Atendimento</a>
+</div>
+
+<header>
+  <div class="header-main">
+    <a href="index.html" class="logo">
+      <span class="logo-text">Sport<span>Shop</span></span>
+    </a>
+    <form class="search-bar" onsubmit="return false;">
+      <input type="text" placeholder="Buscar produtos, marcas e categorias...">
+      <button type="submit">🔍</button>
+    </form>
+    <div class="header-actions">
+      <a href="#">
+        <span class="icon">👤</span>
+        <span>Entrar</span>
+      </a>
+      <a href="#">
+        <span class="icon">❤️</span>
+        <span>Favoritos</span>
+      </a>
+      <a href="carrinho.html" class="cart-badge">
+        <span class="icon">🛒</span>
+        <span>Carrinho</span>
+        <span class="badge" style="display:none;">0</span>
+      </a>
+    </div>
+  </div>
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="active">Home</a>
+      <a href="produtos.html">Futebol</a>
+      <a href="produtos.html">Corrida</a>
+      <a href="produtos.html">Academia</a>
+      <a href="produtos.html">Tênis</a>
+      <a href="produtos.html">Vestuário</a>
+      <a href="produtos.html">Outdoor</a>
+      <a href="produtos.html">Natação</a>
+      <a href="produtos.html">Ciclismo</a>
+      <a href="produtos.html">Ofertas</a>
+    </div>
+  </nav>
+</header>
+
+<!-- HERO BANNER -->
+<section class="hero-banner">
+  <div class="hero-slide active" style="background:linear-gradient(135deg, #003087 0%, #001a4d 100%);">
+    <div class="hero-content">
+      <div class="hero-text">
+        <span class="badge-promo">🔥 Super Oferta</span>
+        <h1>Coleção Verão 2025</h1>
+        <p>Tênis, roupas e acessórios com até 50% de desconto. Corra!</p>
+        <a href="produtos.html" class="btn-hero">Comprar Agora</a>
+      </div>
+      <div class="hero-img">👟</div>
+    </div>
+  </div>
+  <div class="hero-slide" style="background:linear-gradient(135deg, #1a1a1a 0%, #333 100%);">
+    <div class="hero-content">
+      <div class="hero-text">
+        <span class="badge-promo">⚽ Lançamento</span>
+        <h1>Chuteiras Novas Temporada</h1>
+        <p>As melhores chuteiras para o campo e futsal. Jogue com estilo.</p>
+        <a href="produtos.html" class="btn-hero">Ver Coleção</a>
+      </div>
+      <div class="hero-img">⚽</div>
+    </div>
+  </div>
+  <div class="hero-slide" style="background:linear-gradient(135deg, #e05a00 0%, #ff6b00 100%);">
+    <div class="hero-content">
+      <div class="hero-text">
+        <span class="badge-promo">🏋️ Fitness</span>
+        <h1>Equipamentos de Academia</h1>
+        <p>Monte sua academia em casa com os melhores equipamentos.</p>
+        <a href="produtos.html" class="btn-hero">Explorar</a>
+      </div>
+      <div class="hero-img">🏋️</div>
+    </div>
+  </div>
+  <div class="hero-dots">
+    <button class="active"></button>
+    <button></button>
+    <button></button>
+  </div>
+</section>
+
+<!-- MINI BANNERS -->
+<div class="banners-row">
+  <a href="produtos.html" class="mini-banner mini-banner-1">
+    <div class="text">
+      <strong>Frete Grátis</strong>
+      <span>Acima de R$ 299</span>
+    </div>
+    <div class="emoji">🚚</div>
+  </a>
+  <a href="produtos.html" class="mini-banner mini-banner-2">
+    <div class="text">
+      <strong>Lançamentos Nike</strong>
+      <span>Novas coleções disponíveis</span>
+    </div>
+    <div class="emoji">✔️</div>
+  </a>
+  <a href="produtos.html" class="mini-banner mini-banner-3">
+    <div class="text">
+      <strong>Até 50% OFF</strong>
+      <span>Outlet de temporada</span>
+    </div>
+    <div class="emoji">🏷️</div>
+  </a>
+</div>
+
+<!-- CATEGORIAS -->
+<section class="section">
+  <div class="section-header">
+    <h2 class="section-title">Categorias</h2>
+    <a href="produtos.html" class="view-all">Ver todas →</a>
+  </div>
+  <div class="categories-grid">
+    <a href="produtos.html" class="category-card">
+      <span class="category-icon">⚽</span>
+      <span class="category-name">Futebol</span>
+    </a>
+    <a href="produtos.html" class="category-card">
+      <span class="category-icon">👟</span>
+      <span class="category-name">Tênis</span>
+    </a>
+    <a href="produtos.html" class="category-card">
+      <span class="category-icon">🏃</span>
+      <span class="category-name">Corrida</span>
+    </a>
+    <a href="produtos.html" class="category-card">
+      <span class="category-icon">🏋️</span>
+      <span class="category-name">Academia</span>
+    </a>
+    <a href="produtos.html" class="category-card">
+      <span class="category-icon">🚴</span>
+      <span class="category-name">Ciclismo</span>
+    </a>
+    <a href="produtos.html" class="category-card">
+      <span class="category-icon">🏊</span>
+      <span class="category-name">Natação</span>
+    </a>
+    <a href="produtos.html" class="category-card">
+      <span class="category-icon">🥊</span>
+      <span class="category-name">Luta</span>
+    </a>
+    <a href="produtos.html" class="category-card">
+      <span class="category-icon">🏒</span>
+      <span class="category-name">Hockey</span>
+    </a>
+    <a href="produtos.html" class="category-card">
+      <span class="category-icon">🎾</span>
+      <span class="category-name">Tênis</span>
+    </a>
+    <a href="produtos.html" class="category-card">
+      <span class="category-icon">🏀</span>
+      <span class="category-name">Basquete</span>
+    </a>
+    <a href="produtos.html" class="category-card">
+      <span class="category-icon">🏐</span>
+      <span class="category-name">Vôlei</span>
+    </a>
+    <a href="produtos.html" class="category-card">
+      <span class="category-icon">🥋</span>
+      <span class="category-name">Artes Marciais</span>
+    </a>
+  </div>
+</section>
+
+<!-- OFERTAS DO DIA -->
+<section class="section">
+  <div class="section-header">
+    <h2 class="section-title">Ofertas do Dia</h2>
+    <a href="produtos.html" class="view-all">Ver todas →</a>
+  </div>
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-img">
+        <span>👟</span>
+        <span class="product-discount">-45%</span>
+        <span class="product-badge">Novo</span>
+      </div>
+      <div class="product-info">
+        <p class="product-brand">Nike</p>
+        <p class="product-name">Tênis Air Max 270 Running Masculino</p>
+        <div class="product-price">
+          <span class="price-old">R$ 599,90</span>
+          <div class="price-new">R$ 329,90</div>
+          <span class="price-installment">ou <strong>10x R$ 32,99</strong> s/juros</span>
+        </div>
+        <a href="carrinho.html" class="btn-add-cart"
+           data-add-cart data-id="p1" data-name="Nike Air Max 270"
+           data-brand="Nike" data-price="329.90" data-emoji="👟">
+          Adicionar ao Carrinho
+        </a>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">
+        <span>⚽</span>
+        <span class="product-discount">-30%</span>
+      </div>
+      <div class="product-info">
+        <p class="product-brand">Adidas</p>
+        <p class="product-name">Chuteira Predator Accuracy Campo FG</p>
+        <div class="product-price">
+          <span class="price-old">R$ 749,90</span>
+          <div class="price-new">R$ 524,90</div>
+          <span class="price-installment">ou <strong>10x R$ 52,49</strong> s/juros</span>
+        </div>
+        <a href="carrinho.html" class="btn-add-cart"
+           data-add-cart data-id="p2" data-name="Adidas Predator Accuracy"
+           data-brand="Adidas" data-price="524.90" data-emoji="⚽">
+          Adicionar ao Carrinho
+        </a>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">
+        <span>🏋️</span>
+        <span class="product-discount">-20%</span>
+      </div>
+      <div class="product-info">
+        <p class="product-brand">Under Armour</p>
+        <p class="product-name">Camiseta Compression HeatGear Masculina</p>
+        <div class="product-price">
+          <span class="price-old">R$ 199,90</span>
+          <div class="price-new">R$ 159,90</div>
+          <span class="price-installment">ou <strong>5x R$ 31,98</strong> s/juros</span>
+        </div>
+        <a href="carrinho.html" class="btn-add-cart"
+           data-add-cart data-id="p3" data-name="UA Camiseta HeatGear"
+           data-brand="Under Armour" data-price="159.90" data-emoji="🏋️">
+          Adicionar ao Carrinho
+        </a>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">
+        <span>🚴</span>
+        <span class="product-badge">Destaque</span>
+      </div>
+      <div class="product-info">
+        <p class="product-brand">Caloi</p>
+        <p class="product-name">Bicicleta Speed Elite Carbon 21v Aro 700</p>
+        <div class="product-price">
+          <span class="price-old">R$ 3.499,90</span>
+          <div class="price-new">R$ 2.899,90</div>
+          <span class="price-installment">ou <strong>12x R$ 241,66</strong> s/juros</span>
+        </div>
+        <a href="carrinho.html" class="btn-add-cart"
+           data-add-cart data-id="p4" data-name="Caloi Elite Carbon"
+           data-brand="Caloi" data-price="2899.90" data-emoji="🚴">
+          Adicionar ao Carrinho
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARCAS -->
+<section class="section">
+  <div class="section-header">
+    <h2 class="section-title">Principais Marcas</h2>
+  </div>
+  <div class="brands-strip">
+    <a href="produtos.html" class="brand-item">Nike</a>
+    <a href="produtos.html" class="brand-item">Adidas</a>
+    <a href="produtos.html" class="brand-item">Puma</a>
+    <a href="produtos.html" class="brand-item">New Balance</a>
+    <a href="produtos.html" class="brand-item">Under Armour</a>
+    <a href="produtos.html" class="brand-item">Mizuno</a>
+    <a href="produtos.html" class="brand-item">Asics</a>
+    <a href="produtos.html" class="brand-item">Umbro</a>
+    <a href="produtos.html" class="brand-item">Topper</a>
+    <a href="produtos.html" class="brand-item">Penalty</a>
+  </div>
+</section>
+
+<!-- MAIS VENDIDOS -->
+<section class="section">
+  <div class="section-header">
+    <h2 class="section-title">Mais Vendidos</h2>
+    <a href="produtos.html" class="view-all">Ver todos →</a>
+  </div>
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-img">
+        <span>👕</span>
+        <span class="product-discount">-25%</span>
+      </div>
+      <div class="product-info">
+        <p class="product-brand">Puma</p>
+        <p class="product-name">Camisa Puma Ferrari Team 2024</p>
+        <div class="product-price">
+          <span class="price-old">R$ 289,90</span>
+          <div class="price-new">R$ 217,90</div>
+          <span class="price-installment">ou <strong>7x R$ 31,13</strong> s/juros</span>
+        </div>
+        <a href="carrinho.html" class="btn-add-cart"
+           data-add-cart data-id="p5" data-name="Puma Ferrari Team"
+           data-brand="Puma" data-price="217.90" data-emoji="👕">
+          Adicionar ao Carrinho
+        </a>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">
+        <span>🥊</span>
+        <span class="product-badge">Novo</span>
+      </div>
+      <div class="product-info">
+        <p class="product-brand">Everlast</p>
+        <p class="product-name">Luva de Boxe Pro Training 14oz</p>
+        <div class="product-price">
+          <div class="price-new">R$ 189,90</div>
+          <span class="price-installment">ou <strong>6x R$ 31,65</strong> s/juros</span>
+        </div>
+        <a href="carrinho.html" class="btn-add-cart"
+           data-add-cart data-id="p6" data-name="Everlast Luva Pro"
+           data-brand="Everlast" data-price="189.90" data-emoji="🥊">
+          Adicionar ao Carrinho
+        </a>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">
+        <span>🏊</span>
+        <span class="product-discount">-15%</span>
+      </div>
+      <div class="product-info">
+        <p class="product-brand">Speedo</p>
+        <p class="product-name">Óculos de Natação Hydrospex Classic</p>
+        <div class="product-price">
+          <span class="price-old">R$ 89,90</span>
+          <div class="price-new">R$ 76,40</div>
+          <span class="price-installment">ou <strong>3x R$ 25,47</strong> s/juros</span>
+        </div>
+        <a href="carrinho.html" class="btn-add-cart"
+           data-add-cart data-id="p7" data-name="Speedo Hydrospex"
+           data-brand="Speedo" data-price="76.40" data-emoji="🏊">
+          Adicionar ao Carrinho
+        </a>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">
+        <span>🎽</span>
+        <span class="product-discount">-35%</span>
+      </div>
+      <div class="product-info">
+        <p class="product-brand">Asics</p>
+        <p class="product-name">Shorts Woven 2-in-1 Running Masculino</p>
+        <div class="product-price">
+          <span class="price-old">R$ 179,90</span>
+          <div class="price-new">R$ 116,90</div>
+          <span class="price-installment">ou <strong>4x R$ 29,23</strong> s/juros</span>
+        </div>
+        <a href="carrinho.html" class="btn-add-cart"
+           data-add-cart data-id="p8" data-name="Asics Shorts Woven"
+           data-brand="Asics" data-price="116.90" data-emoji="🎽">
+          Adicionar ao Carrinho
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<div class="benefits-bar">
+  <div class="benefits-inner">
+    <div class="benefit-item">
+      <span class="benefit-icon">🚚</span>
+      <div class="benefit-text">
+        <strong>Frete Grátis</strong>
+        <span>Para compras acima de R$ 299</span>
+      </div>
+    </div>
+    <div class="benefit-item">
+      <span class="benefit-icon">🔒</span>
+      <div class="benefit-text">
+        <strong>Compra Segura</strong>
+        <span>Ambiente 100% protegido</span>
+      </div>
+    </div>
+    <div class="benefit-item">
+      <span class="benefit-icon">↩️</span>
+      <div class="benefit-text">
+        <strong>Troca Fácil</strong>
+        <span>Até 30 dias para trocar</span>
+      </div>
+    </div>
+    <div class="benefit-item">
+      <span class="benefit-icon">💳</span>
+      <div class="benefit-text">
+        <strong>Parcele em 10x</strong>
+        <span>Sem juros no cartão</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo-text">Sport<span>Shop</span></div>
+      <p>A maior loja de artigos esportivos do Brasil. Produtos originais das melhores marcas com os melhores preços.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Institucional</h4>
+      <ul>
+        <li><a href="#">Sobre nós</a></li>
+        <li><a href="#">Trabalhe conosco</a></li>
+        <li><a href="#">Imprensa</a></li>
+        <li><a href="#">Sustentabilidade</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Atendimento</h4>
+      <ul>
+        <li><a href="#">Central de ajuda</a></li>
+        <li><a href="#">Devolução e troca</a></li>
+        <li><a href="#">Fale conosco</a></li>
+        <li><a href="#">Lojas físicas</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Esportes</h4>
+      <ul>
+        <li><a href="produtos.html">Futebol</a></li>
+        <li><a href="produtos.html">Corrida</a></li>
+        <li><a href="produtos.html">Academia</a></li>
+        <li><a href="produtos.html">Natação</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 SportShop — Todos os direitos reservados</span>
+    <div class="social-links">
+      <a href="#" title="Instagram">📷</a>
+      <a href="#" title="Facebook">👥</a>
+      <a href="#" title="YouTube">▶️</a>
+      <a href="#" title="Twitter">🐦</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

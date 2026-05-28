@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projetos — Portfólio</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+    .tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #94a3b8;
+      margin-bottom: 12px;
+    }
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 900;
+      text-align: center;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #e2e8f0, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    p {
+      color: #64748b;
+      font-size: 0.95rem;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      max-width: 760px;
+      width: 100%;
+    }
+    .card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 32px;
+      text-decoration: none;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+      border-color: #3b82f6;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+    .card-icon { font-size: 2.4rem; margin-bottom: 16px; }
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #f1f5f9;
+      margin-bottom: 8px;
+    }
+    .card-desc {
+      font-size: 0.83rem;
+      color: #64748b;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .card-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 20px;
+      background: #0f172a;
+      border: 1px solid #334155;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    .card-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #3b82f6;
+    }
+    .footer-note {
+      margin-top: 40px;
+      font-size: 0.75rem;
+      color: #334155;
+    }
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+      h1 { font-size: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+  <p class="tag">Portfólio de Projetos</p>
+  <h1>Projetos Web</h1>
+  <p>Dois projetos desenvolvidos em HTML, CSS e JS puro</p>
+
+  <div class="grid">
+    <a href="loja-virtual/index.html" class="card">
+      <div class="card-icon">🛍️</div>
+      <div class="card-title">SportShop — Loja Virtual</div>
+      <div class="card-desc">E-commerce de artigos esportivos inspirado na Netshoes. Home, catálogo de produtos e carrinho com localStorage.</div>
+      <div class="card-tags">
+        <span class="card-tag">HTML</span>
+        <span class="card-tag">CSS</span>
+        <span class="card-tag">JavaScript</span>
+        <span class="card-tag">E-commerce</span>
+      </div>
+      <div class="card-arrow">
+        <span>Ver projeto</span>
+        <span>→</span>
+      </div>
+    </a>
+
+    <a href="icatu-site/index.html" class="card">
+      <div class="card-icon">🛡️</div>
+      <div class="card-title">Icatu Seguros — Site Institucional</div>
+      <div class="card-desc">Site corporativo de seguros e previdência inspirado na Icatu. Home, serviços e página de contato com formulário.</div>
+      <div class="card-tags">
+        <span class="card-tag">HTML</span>
+        <span class="card-tag">CSS</span>
+        <span class="card-tag">JavaScript</span>
+        <span class="card-tag">Institucional</span>
+      </div>
+      <div class="card-arrow">
+        <span>Ver projeto</span>
+        <span>→</span>
+      </div>
+    </a>
+  </div>
+
+  <p class="footer-note">Projetos estáticos — sem frameworks, sem dependências externas</p>
+</body>
+</html>
