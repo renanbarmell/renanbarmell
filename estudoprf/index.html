@@ -368,7 +368,7 @@ btnGerar.addEventListener("click",async()=>{
   loadWrap.style.display="block";loadLbl.textContent="Analisando provas CEBRASPE...";startSteps();
   btnGerar.disabled=true;btnGerar.textContent="⏳ Gerando...";
   try{
-    const res=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-6",max_tokens:8000,system:SYSTEM,messages:[{role:"user",content:`Matéria: ${mat}\nTema: ${tem}\n\nGere o conteúdo COMPLETO com todas as seções.`}]})});
+    const res=await fetch("/api/claude",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-6",max_tokens:8000,system:SYSTEM,messages:[{role:"user",content:`Matéria: ${mat}\nTema: ${tem}\n\nGere o conteúdo COMPLETO com todas as seções.`}]})});
     const data=await res.json();
     if(data.error) throw new Error(data.error.message);
     const texto=data.content?.map(b=>b.text||"").join("")||"";
@@ -396,7 +396,7 @@ btnPDF.addEventListener("click",async()=>{
   try{
     // 1. Pede o script Python para a API
     pdfStat.textContent="Gerando script do infográfico...";
-    const r1=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-6",max_tokens:8000,system:SYSTEM_PDF,messages:[{role:"user",content:`Matéria: ${materiaAtual}\nTema: ${temaAtual}\nNome do arquivo: mapa-${slug}.pdf\nConteúdo:\n${conteudoAtual}`}]})});
+    const r1=await fetch("/api/claude",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-6",max_tokens:8000,system:SYSTEM_PDF,messages:[{role:"user",content:`Matéria: ${materiaAtual}\nTema: ${temaAtual}\nNome do arquivo: mapa-${slug}.pdf\nConteúdo:\n${conteudoAtual}`}]})});
     const d1=await r1.json();
     if(d1.error) throw new Error(d1.error.message);
     const script=d1.content?.map(b=>b.text||"").join("")||"";
