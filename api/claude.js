@@ -11,16 +11,14 @@ export default async function handler(req, res) {
     const msgs = [];
     if (system) msgs.push({ role: 'system', content: system });
     msgs.push(...messages);
-    const r = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+    const r = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
-        'HTTP-Referer': 'https://renanbarmell.com.br',
-        'X-Title': 'PRF REVERSO'
+        'Authorization': `Bearer ${process.env.GROQ_API_KEY}`
       },
       body: JSON.stringify({
-        model: 'nvidia/nemotron-nano-9b-v2:free',
+        model: 'llama-3.3-70b-versatile',
         messages: msgs,
         max_tokens: max_tokens || 8000
       })
