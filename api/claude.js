@@ -20,7 +20,7 @@ export default async function handler(req, res) {
         'X-Title': 'PRF REVERSO'
       },
       body: JSON.stringify({
-        model: 'google/gemini-2.0-flash-exp:free',
+        model: 'google/gemma-4-31b-it:free',
         messages: msgs,
         max_tokens: max_tokens || 8000
       })
