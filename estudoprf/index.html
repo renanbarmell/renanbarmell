@@ -83,14 +83,63 @@ input[type=text]:focus{border-color:#1565C0}
 .pdf-spinner{width:36px;height:36px;border:3px solid #1e2d42;border-top-color:#C62828;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 12px}
 #pdf-status{font-size:13px;color:#5b7fa6}
 
+/* ANKI LOADING */
+#anki-loading{display:none;background:#16191f;border:1px solid #2d3a1e;border-radius:14px;padding:32px 20px;text-align:center;margin-top:16px}
+.anki-spinner{width:36px;height:36px;border:3px solid #1e2d42;border-top-color:#43A047;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 12px}
+#anki-status{font-size:13px;color:#5b7fa6}
+
+/* ANKI MODAL */
+#anki-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:100;align-items:center;justify-content:center}
+#anki-modal.open{display:flex}
+#anki-box{background:#16191f;border:1px solid #2a3a2a;border-radius:16px;width:90%;max-width:780px;max-height:85vh;display:flex;flex-direction:column;overflow:hidden}
+#anki-box-header{background:#0f1117;border-bottom:1px solid #1e2d42;padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
+#anki-box-title{font-weight:800;font-size:15px;color:#fff}
+#anki-box-sub{font-size:11px;color:#5b7fa6;margin-top:2px}
+#anki-close{background:transparent;border:none;color:#5b7fa6;font-size:18px;cursor:pointer;padding:4px}
+#anki-close:hover{color:#fff}
+#anki-box-body{flex:1;overflow-y:auto;padding:16px}
+#anki-table-wrap{overflow-x:auto}
+#anki-table{width:100%;border-collapse:collapse;font-size:12px}
+#anki-table th{background:#0f1117;color:#5b7fa6;font-size:10px;font-weight:700;letter-spacing:1px;padding:8px 10px;text-align:left;border-bottom:1px solid #1e2d42;white-space:nowrap}
+#anki-table td{padding:8px 10px;border-bottom:1px solid #1a1f2e;color:#cdd8e3;vertical-align:top;line-height:1.5}
+#anki-table tr:hover td{background:rgba(255,255,255,0.02)}
+#anki-table td:nth-child(3){color:#90CAF9;font-weight:500}
+#anki-table td:nth-child(4){color:#a5d6a7}
+.tag-chip{display:inline-block;background:#1e2d42;border-radius:4px;padding:1px 6px;font-size:10px;color:#90CAF9;margin:1px}
+#anki-box-footer{border-top:1px solid #1e2d42;padding:14px 20px;display:flex;gap:10px;justify-content:flex-end}
+.btn-anki-dl{padding:10px 20px;background:linear-gradient(135deg,#2E7D32,#1B5E20);border:none;border-radius:8px;color:#fff;font-weight:700;font-size:13px;cursor:pointer}
+.btn-anki-cl{padding:10px 16px;background:#1e2d42;border:1px solid #1e3a5f;border-radius:8px;color:#fff;font-weight:600;font-size:12px;cursor:pointer}
+
 /* OUTPUT */
-#output-card{background:#16191f;border:1px solid #1e2d42;border-radius:14px;overflow:hidden;display:none}
-#output-header{background:#0f1117;border-bottom:1px solid #1e2d42;padding:12px 20px;display:flex;align-items:center;gap:10px}
+#output-card{background:#0f1117;border:1px solid #1e2d42;border-radius:14px;overflow:hidden;display:none}
+#output-header{background:#16191f;border-bottom:1px solid #1e2d42;padding:12px 20px;display:flex;align-items:center;gap:10px}
 #odot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
 #omateria{font-weight:800;font-size:15px;color:#fff}
 #otema{font-size:12px;color:#5b7fa6;margin-top:1px}
 #otema span{color:#90CAF9}
-#output-body{padding:20px}
+#output-body{padding:16px;display:flex;flex-direction:column;gap:12px}
+
+/* CARDS POR CATEGORIA */
+.sec-card{border-radius:12px;overflow:hidden;border:1px solid}
+.sec-card-head{display:flex;align-items:center;gap:10px;padding:10px 14px}
+.sec-card-badge{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.sec-card-title{font-weight:800;font-size:13px;letter-spacing:0.3px}
+.sec-card-body{padding:12px 16px 14px}
+.sec-card-body p{margin:4px 0;font-size:13px;line-height:1.75;color:#cdd8e3}
+.sec-card-body ul{margin:6px 0 10px 0;padding-left:18px}
+.sec-card-body li{font-size:13px;line-height:1.75;color:#cdd8e3;margin-bottom:5px}
+.sec-card-body strong{color:#fff;font-weight:700}
+.sec-card-body code{background:rgba(0,0,0,0.3);padding:1px 5px;border-radius:4px;font-size:12px}
+.sec-card-body h3{font-size:12px;font-weight:700;margin:12px 0 5px;padding:4px 8px;border-radius:4px;color:#fff}
+/* cores por seção */
+.sec-mapa   {background:#0d1b2a;border-color:#1565C0} .sec-mapa   .sec-card-head{background:#1565C020} .sec-mapa   .sec-card-title{color:#90CAF9} .sec-mapa   .sec-card-badge{background:#1565C030}
+.sec-pontos {background:#1a0d00;border-color:#E65100} .sec-pontos .sec-card-head{background:#E6510020} .sec-pontos .sec-card-title{color:#FFAB76} .sec-pontos .sec-card-badge{background:#E6510030}
+.sec-conteudo{background:#0d1a0d;border-color:#2E7D32} .sec-conteudo .sec-card-head{background:#2E7D3220} .sec-conteudo .sec-card-title{color:#a5d6a7} .sec-conteudo .sec-card-badge{background:#2E7D3230}
+.sec-conteudo .sec-card-body h3{background:#2E7D3220;color:#a5d6a7}
+.sec-pegadinhas{background:#1a0d0d;border-color:#C62828} .sec-pegadinhas .sec-card-head{background:#C6282820} .sec-pegadinhas .sec-card-title{color:#ef9a9a} .sec-pegadinhas .sec-card-badge{background:#C6282830}
+.sec-lei    {background:#1a150d;border-color:#F5B400} .sec-lei    .sec-card-head{background:#F5B40020} .sec-lei    .sec-card-title{color:#FFE082} .sec-lei    .sec-card-badge{background:#F5B40030}
+.sec-questoes{background:#0d0d1a;border-color:#6A1B9A} .sec-questoes .sec-card-head{background:#6A1B9A20} .sec-questoes .sec-card-title{color:#CE93D8} .sec-questoes .sec-card-badge{background:#6A1B9A30}
+.sec-mnemo  {background:#0d1a1a;border-color:#00838F} .sec-mnemo  .sec-card-head{background:#00838F20} .sec-mnemo  .sec-card-title{color:#80DEEA} .sec-mnemo  .sec-card-badge{background:#00838F30}
 
 /* EMPTY */
 #empty-state{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
@@ -98,17 +147,6 @@ input[type=text]:focus{border-color:#1565C0}
 .fi{font-size:19px;margin-bottom:5px}
 .ft{font-weight:700;font-size:12px;color:#90CAF9}
 .fd{font-size:11px;color:#3a4a5a;margin-top:2px}
-
-/* MARKDOWN — quebra de linha entre seções */
-#output-body h2{color:#90CAF9;font-size:14px;font-weight:800;margin:28px 0 10px;padding:7px 11px;background:rgba(21,101,192,0.12);border-left:3px solid #1565C0;border-radius:0 5px 5px 0}
-#output-body h2:first-child{margin-top:0}
-#output-body p{margin:4px 0;font-size:13px;line-height:1.75;color:#cdd8e3}
-#output-body ul{margin:6px 0 14px 0;padding-left:18px}
-#output-body li{font-size:13px;line-height:1.75;color:#cdd8e3;margin-bottom:5px}
-#output-body strong{color:#fff;font-weight:700}
-#output-body code{background:#1e2d42;padding:1px 5px;border-radius:4px;font-size:12px;color:#90CAF9}
-/* linha divisória entre seções */
-#output-body .sec-break{border:none;border-top:1px solid #1e2d42;margin:4px 0 0}
 
 ::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-track{background:#0f1117}
@@ -137,6 +175,7 @@ input[type=text]:focus{border-color:#1565C0}
       <div id="btn-row">
         <button class="btn-p" id="btn-gerar">🎯 GERAR CONTEÚDO REVERSO</button>
         <button class="btn-s" id="btn-pdf" style="display:none">📄 GERAR PDF VISUAL</button>
+        <button class="btn-s" id="btn-anki" style="display:none;background:#1e2d1e;border-color:#2a3a2a;color:#a5d6a7">🃏 GERAR CARDS ANKI</button>
         <button class="btn-s" id="btn-cop" style="display:none">📋 Copiar</button>
         <button class="btn-s muted" id="btn-lmp" style="display:none">🗑</button>
       </div>
@@ -168,8 +207,39 @@ input[type=text]:focus{border-color:#1565C0}
       <div id="pdf-status">Gerando PDF visual...</div>
     </div>
 
-    <!-- EMPTY -->
-    <div id="empty-state">
+    <!-- ANKI LOADING -->
+    <div id="anki-loading">
+      <div class="anki-spinner"></div>
+      <div id="anki-status">Gerando flashcards Anki...</div>
+    </div>
+
+  </div></div>
+</div>
+
+<!-- ANKI MODAL -->
+<div id="anki-modal">
+  <div id="anki-box">
+    <div id="anki-box-header">
+      <div>
+        <div id="anki-box-title">🃏 Flashcards Anki</div>
+        <div id="anki-box-sub"></div>
+      </div>
+      <button id="anki-close">✕</button>
+    </div>
+    <div id="anki-box-body">
+      <div id="anki-table-wrap">
+        <table id="anki-table">
+          <thead><tr><th>#</th><th>BARALHO</th><th>FRENTE</th><th>VERSO</th><th>TIPO</th><th>TAGS</th></tr></thead>
+          <tbody id="anki-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+    <div id="anki-box-footer">
+      <button class="btn-anki-cl" id="anki-fechar">Fechar</button>
+      <button class="btn-anki-dl" id="anki-baixar">⬇ Baixar CSV para Anki</button>
+    </div>
+  </div>
+</div>
       <div class="fc"><div class="fi">📌</div><div class="ft">Mapa do que cai</div><div class="fd">Frequência CEBRASPE</div></div>
       <div class="fc"><div class="fi">⚠️</div><div class="ft">Pegadinhas</div><div class="fd">Falso vs. correto</div></div>
       <div class="fc"><div class="fi">🎯</div><div class="ft">Questões-modelo</div><div class="fd">Certo/Errado + gabarito</div></div>
@@ -184,39 +254,64 @@ const MATERIAS = ["Português","Direito Constitucional","Direito Administrativo"
 const COR = {"Português":"#43A047","Direito Constitucional":"#1565C0","Direito Administrativo":"#6A1B9A","Direito Penal":"#C62828","Direito Processual Penal":"#E65100","Legislação de Trânsito (CTB)":"#00838F","Direitos Humanos":"#AD1457","Legislação Especial":"#558B2F","Raciocínio Lógico":"#4527A0","Informática":"#00695C","Inglês":"#F57F17","Geografia do Brasil":"#2E7D32"};
 const cor = m => COR[m] || "#1565C0";
 
-const SYSTEM = `Você é um professor especialista em concursos públicos, foco total na banca CEBRASPE. Método R.E.V.E.R.S.O. — engenharia reversa pela banca.
+const SYSTEM = `Você é um professor especialista em concursos públicos, foco total na banca CEBRASPE/CESPE para o concurso da PRF. Método R.E.V.E.R.S.O. — engenharia reversa pela banca.
 
-REGRAS ABSOLUTAS:
-- Baseie TODO o conteúdo nas questões reais já cobradas pela CEBRASPE
-- Sem enrolação, direto ao que cai na prova
-- Denso, técnico, preciso
-- Complete TODAS as seções abaixo sem interromper
-- Na seção de mnemônicos, seja ABUNDANTE: mínimo 4 técnicas diferentes
+PADRÃO DE QUALIDADE OBRIGATÓRIO:
+- Cada artigo de lei citado DEVE ter: (1) texto literal, (2) o que significa em linguagem simples, (3) como a CEBRASPE já cobrou isso em prova, (4) o erro clássico que os candidatos cometem
+- Cada conceito DEVE ter exemplo prático concreto, não apenas definição abstrata
+- Seja EXTENSO e DETALHADO — o candidato precisa estudar só por este material
+- Complete TODAS as seções sem interromper
+- Mínimo de 5 pegadinhas clássicas
+- Mínimo de 3 questões-modelo
+- Mínimo de 5 técnicas de memorização diferentes e criativas
 
 ESTRUTURA OBRIGATÓRIA:
 
 ## 📌 MAPA DO QUE CAI (CEBRASPE)
-Sub-tópicos por frequência (% aproximada).
+Liste os sub-tópicos mais cobrados com % de frequência aproximada. Para cada um, explique EM UMA LINHA por que a banca gosta desse ponto.
 
 ## 🔥 PONTOS CRÍTICOS
-Distinções e padrões recorrentes da banca.
+Para cada ponto crítico: explique o conceito, mostre a distinção que a banca explora e dê um exemplo de como isso aparece na prova. Formato:
+**[Nome do ponto]:** [explicação completa do conceito] — A banca cobra isso confundindo com [X]. Exemplo real: "[como aparece na questão]".
 
 ## 📚 CONTEÚDO ESSENCIAL
-Blocos temáticos com definição + o que importa + distinções.
+Organize em blocos temáticos numerados. Para cada bloco:
+### [Número]. [Nome do bloco]
+- **O que é:** definição direta e completa
+- **O que importa para a prova:** os detalhes específicos que caem
+- **Distinções-chave:** diferenças que a banca explora
+- **Exemplo prático:** situação real que ilustra o conceito
+- **Cuidado:** erro comum dos candidatos neste ponto
 
 ## ⚠️ PEGADINHAS CLÁSSICAS
-❌ FALSO: "[afirmação errada da banca]"
-✅ CORRETO: "[como é de fato]"
+Mínimo 5 pegadinhas. Para cada uma:
+❌ FALSO: "[afirmação errada exatamente como a banca escreve]"
+✅ CORRETO: "[como é de fato, com explicação do porquê]"
+💡 DICA: [como identificar essa pegadinha rapidamente]
 
-## 📝 LEI SECA
-Art. X — "[texto literal cobrado]"
+## 📝 LEI SECA — ARTIGOS QUE CAEM DECORADOS
+Para cada artigo:
+**Art. X** — "[texto literal completo]"
+📖 **Significa:** [explicação em linguagem simples]
+🎯 **Como a banca cobra:** [exemplo de questão ou afirmação típica]
+⚠️ **Não confunda:** [erro clássico relacionado a este artigo]
 
 ## 🎯 QUESTÕES-MODELO CEBRASPE
-(  ) [afirmação]
-Gabarito: [CERTO/ERRADO] — [justificativa em 1 linha]
+Mínimo 3 questões no estilo exato da banca:
+**(  )** [afirmação completa como aparece na prova]
+**Gabarito:** [CERTO/ERRADO]
+**Justificativa:** [explicação completa do porquê, citando o dispositivo legal]
+**Dica de resolução:** [como chegar na resposta rapidamente]
 
 ## 🧠 MNEMÔNICOS E DICAS PARA DECORAR
-Forneça no mínimo 4 técnicas: acrônimos, frases-gatilho, associações visuais/absurdas, rimas, analogias do cotidiano, palavra-âncora, regras "se X então Y".`;
+Mínimo 5 técnicas CRIATIVAS e específicas para ESTE conteúdo:
+1. **Acrônimo/Sigla:** [crie uma sigla com as iniciais dos conceitos principais]
+2. **Frase-gatilho:** [frase que resume a regra principal e é fácil de lembrar]
+3. **História/Associação absurda:** [crie uma história bizarra que ancora os conceitos na memória]
+4. **Regras "se...então":** [transforme as regras em condicionais simples]
+5. **Analogia do cotidiano:** [compare com algo do dia a dia]
+6. **Música/Rima:** [crie uma rima ou adaptação de música conhecida]
+7. **Mapa mental resumido:** [descreva como organizar visualmente o conteúdo]`;
 
 const SYSTEM_PDF = `Você é um especialista em Python/reportlab. Gere um script Python COMPLETO e executável que cria um PDF de estudo estilo infográfico de concurso (como @neuronappoficial).
 
@@ -279,28 +374,76 @@ document.getElementById("side-toggle").addEventListener("click",()=>{
   document.getElementById("stl").style.display=sideOpen?"":"none";
 });
 
-// md → html com quebras entre seções
-function md2html(text){
-  if(!text) return "";
-  let html="",inUl=false,firstH2=true;
-  for(let line of text.split("\n")){
-    line=line.replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>").replace(/`(.+?)`/g,"<code>$1</code>");
-    if(/^## /.test(line)){
-      if(inUl){html+="</ul>";inUl=false;}
-      if(!firstH2) html+='<hr class="sec-break"/>';
-      html+=`<h2>${line.replace(/^## /,"")}</h2>`;
-      firstH2=false;
-    } else if(/^[-•❌✅] /.test(line)||/^\(\s*\)/.test(line)){
-      if(!inUl){html+="<ul>";inUl=true;}
-      html+=`<li>${line.replace(/^[-•❌✅] /,"")}</li>`;
-    } else if(line.trim()===""){
-      if(inUl){html+="</ul>";inUl=false;}
-    } else {
-      if(inUl){html+="</ul>";inUl=false;}
-      html+=`<p>${line}</p>`;
+// Mapeamento de seções → classes e ícones
+const SEC_MAP = {
+  'MAPA DO QUE CAI':        {cls:'sec-mapa',    icon:'📌', label:'MAPA DO QUE CAI (CEBRASPE)'},
+  'PONTOS CRÍTICOS':        {cls:'sec-pontos',  icon:'🔥', label:'PONTOS CRÍTICOS'},
+  'CONTEÚDO ESSENCIAL':     {cls:'sec-conteudo',icon:'📚', label:'CONTEÚDO ESSENCIAL'},
+  'PEGADINHAS CLÁSSICAS':   {cls:'sec-pegadinhas',icon:'⚠️',label:'PEGADINHAS CLÁSSICAS'},
+  'LEI SECA':               {cls:'sec-lei',     icon:'📝', label:'LEI SECA — ARTIGOS QUE CAEM'},
+  'QUESTÕES-MODELO':        {cls:'sec-questoes',icon:'🎯', label:'QUESTÕES-MODELO CEBRASPE'},
+  'MNEMÔNICOS':             {cls:'sec-mnemo',   icon:'🧠', label:'MNEMÔNICOS E DICAS PARA DECORAR'},
+};
+
+function getSec(title) {
+  const t = title.toUpperCase();
+  for (const [k,v] of Object.entries(SEC_MAP)) {
+    if (t.includes(k)) return v;
+  }
+  return {cls:'sec-mapa', icon:'📋', label: title.replace(/^[^\w]+/,'').trim()};
+}
+
+function md2html(text) {
+  if (!text) return "";
+  // divide em seções pelo h2
+  const sections = [];
+  let cur = null;
+  for (let line of text.split("\n")) {
+    if (/^## /.test(line)) {
+      if (cur) sections.push(cur);
+      cur = { title: line.replace(/^## /,"").replace(/[^\w\s\(\)CRÍTICOS]/g," ").trim(), lines: [] };
+    } else if (cur) {
+      cur.lines.push(line);
     }
   }
-  if(inUl) html+="</ul>";
+  if (cur) sections.push(cur);
+
+  let html = "";
+  for (const sec of sections) {
+    const s = getSec(sec.title);
+    const body = renderLines(sec.lines);
+    html += `
+    <div class="sec-card ${s.cls}">
+      <div class="sec-card-head">
+        <div class="sec-card-badge">${s.icon}</div>
+        <div class="sec-card-title">${s.label}</div>
+      </div>
+      <div class="sec-card-body">${body}</div>
+    </div>`;
+  }
+  return html;
+}
+
+function renderLines(lines) {
+  let html = "", inUl = false;
+  for (let line of lines) {
+    line = line
+      .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+      .replace(/`(.+?)`/g, "<code>$1</code>");
+    if (/^### /.test(line)) {
+      if (inUl) { html += "</ul>"; inUl = false; }
+      html += `<h3>${line.replace(/^### /,"")}</h3>`;
+    } else if (/^[-•❌✅💡⚠️📖🎯] /.test(line) || /^\(\s*\)/.test(line)) {
+      if (!inUl) { html += "<ul>"; inUl = true; }
+      html += `<li>${line.replace(/^[-•❌✅💡⚠️📖🎯] /,"")}</li>`;
+    } else if (line.trim() === "") {
+      if (inUl) { html += "</ul>"; inUl = false; }
+    } else if (line.trim()) {
+      if (inUl) { html += "</ul>"; inUl = false; }
+      html += `<p>${line}</p>`;
+    }
+  }
+  if (inUl) html += "</ul>";
   return html;
 }
 
@@ -338,7 +481,7 @@ function renderSide(){
 function mostrarOutput(){
   emptyEl.style.display="none";loadWrap.style.display="none";
   sepEl.style.display="flex";outCard.style.display="block";
-  btnPDF.style.display="";btnCop.style.display="";btnLmp.style.display="";
+  btnPDF.style.display="";btnCop.style.display="";btnLmp.style.display="";btnAnki.style.display="";
   sepLbl.textContent=materiaAtual.toUpperCase();
   const c=cor(materiaAtual);
   document.getElementById("odot").style.background=c;
@@ -353,9 +496,9 @@ function removerItem(id){historico=historico.filter(i=>i.id!==id);if(activeId===
 
 function limpar(){
   inpMat.value="";inpTema.value="";conteudoAtual="";materiaAtual="";temaAtual="";activeId=null;
-  outCard.style.display="none";loadWrap.style.display="none";pdfLoad.style.display="none";
+  outCard.style.display="none";loadWrap.style.display="none";pdfLoad.style.display="none";ankiLoad.style.display="none";
   sepEl.style.display="none";emptyEl.style.display="grid";
-  btnPDF.style.display="none";btnCop.style.display="none";btnLmp.style.display="none";
+  btnPDF.style.display="none";btnCop.style.display="none";btnLmp.style.display="none";btnAnki.style.display="none";
   errBox.style.display="none";renderSide();
 }
 
@@ -421,6 +564,111 @@ btnPDF.addEventListener("click",async()=>{
   }finally{
     btnPDF.disabled=false;btnPDF.textContent="📄 GERAR PDF VISUAL";
   }
+});
+
+const SYSTEM_ANKI = `Você é um especialista em criação de flashcards Anki para concursos públicos, com foco na banca CEBRASPE/PRF.
+
+REGRAS:
+- Gere entre 15 e 25 cards por tema
+- Baseie-se nas questões reais já cobradas pela CEBRASPE
+- Nunca repita frente ou verso
+- Verifique lei seca em fontes oficiais (Planalto, STF, STJ) antes de usar texto literal
+- Cubra: conceitos principais, pegadinhas da banca, lei seca, distinções, questões certo/errado
+
+TIPOS DE CARD:
+- Basic: conceito → definição
+- Cloze: frase com lacuna {{c1::resposta}}
+- Certo/Errado (Cebraspe): afirmação da banca → CERTO ou ERRADO + justificativa
+- Basic (type in answer): pergunta direta → resposta curta
+
+HIERARQUIA DE DECK: PRF::<Matéria>::<Assunto>
+
+RETORNE APENAS um JSON válido, sem markdown, sem explicações, neste formato exato:
+[
+  {
+    "baralho": "PRF::Direito Penal::Regimes de Pena",
+    "tipo": "Basic",
+    "frente": "Qual o regime inicial para pena superior a 8 anos?",
+    "verso": "Regime fechado — cumprido em penitenciária.",
+    "tags": ["regime-pena","fechado","art-33-cp"]
+  }
+]`;
+
+// Estado Anki
+let ankiCards = [];
+
+// Refs Anki
+const btnAnki    = document.getElementById("btn-anki");
+const ankiLoad   = document.getElementById("anki-loading");
+const ankiStat   = document.getElementById("anki-status");
+const ankiModal  = document.getElementById("anki-modal");
+const ankiTbody  = document.getElementById("anki-tbody");
+const ankiBoxSub = document.getElementById("anki-box-sub");
+
+// GERAR ANKI
+btnAnki.addEventListener("click", async () => {
+  if (!conteudoAtual) return;
+  btnAnki.disabled = true; btnAnki.textContent = "⏳ Gerando cards...";
+  ankiLoad.style.display = "block"; ankiStat.textContent = "Analisando conteúdo e criando flashcards...";
+
+  try {
+    const res = await fetch("/api/claude", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-6", max_tokens: 8000,
+        system: SYSTEM_ANKI,
+        messages: [{ role: "user", content: `Matéria: ${materiaAtual}\nTema: ${temaAtual}\n\nConteúdo base:\n${conteudoAtual}\n\nGere os flashcards Anki em JSON.` }]
+      })
+    });
+    const data = await res.json();
+    if (data.error) throw new Error(data.error.message);
+    let raw = data.content?.map(b => b.text || "").join("") || "";
+    raw = raw.replace(/```json|```/g, "").trim();
+    ankiCards = JSON.parse(raw);
+    ankiLoad.style.display = "none";
+    abrirModalAnki();
+  } catch(e) {
+    ankiStat.textContent = "Erro: " + (e.message || "Tente novamente.");
+    setTimeout(() => { ankiLoad.style.display = "none"; }, 3000);
+  } finally {
+    btnAnki.disabled = false; btnAnki.textContent = "🃏 GERAR CARDS ANKI";
+  }
+});
+
+function abrirModalAnki() {
+  ankiBoxSub.textContent = `${materiaAtual} — ${temaAtual} · ${ankiCards.length} cards`;
+  ankiTbody.innerHTML = "";
+  ankiCards.forEach((c, i) => {
+    const tr = document.createElement("tr");
+    const tags = (c.tags || []).map(t => `<span class="tag-chip">${t}</span>`).join("");
+    tr.innerHTML = `
+      <td style="color:#5b7fa6;font-weight:700">${i+1}</td>
+      <td style="font-size:11px;color:#5b7fa6">${c.baralho || ""}</td>
+      <td>${escHtml(c.frente || "")}</td>
+      <td>${escHtml(c.verso || "")}</td>
+      <td><span style="font-size:11px;background:#1e2d42;padding:2px 7px;border-radius:4px;color:#90CAF9">${c.tipo || "Basic"}</span></td>
+      <td>${tags}</td>`;
+    ankiTbody.appendChild(tr);
+  });
+  ankiModal.classList.add("open");
+}
+
+function escHtml(t) { return t.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+document.getElementById("anki-close").addEventListener("click",  () => ankiModal.classList.remove("open"));
+document.getElementById("anki-fechar").addEventListener("click", () => ankiModal.classList.remove("open"));
+ankiModal.addEventListener("click", e => { if (e.target === ankiModal) ankiModal.classList.remove("open"); });
+
+document.getElementById("anki-baixar").addEventListener("click", () => {
+  const header = "Baralho\tTipo\tFrente\tVerso\tTags";
+  const rows = ankiCards.map(c =>
+    [c.baralho, c.tipo, c.frente, c.verso, (c.tags||[]).join(" ")].map(v => `"${(v||"").replace(/"/g,'""')}"`).join("\t")
+  );
+  const csv = [header, ...rows].join("\n");
+  const blob = new Blob([csv], { type: "text/tab-separated-values;charset=utf-8;" });
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob);
+  const slug = temaAtual.toLowerCase().replace(/[^a-z0-9]+/g,"-").slice(0,40);
+  a.download = `anki-prf-${slug}.txt`; a.click();
 });
 
 btnCop.addEventListener("click",()=>{
