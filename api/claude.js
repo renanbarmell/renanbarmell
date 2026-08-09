@@ -9,8 +9,7 @@ export default async function handler(req, res) {
   try {
     const { system, messages, max_tokens } = req.body;
     const msgs = [];
-    if (system) msgs.push({ role: 'user', content: `[INSTRUÇÕES DO SISTEMA]\n${system}\n[FIM DAS INSTRUÇÕES]\n\nConfirme que entendeu respondendo apenas: entendido.` });
-    if (system) msgs.push({ role: 'assistant', content: 'entendido.' });
+    if (system) msgs.push({ role: 'system', content: system });
     msgs.push(...messages);
     const r = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
@@ -21,7 +20,7 @@ export default async function handler(req, res) {
         'X-Title': 'PRF REVERSO'
       },
       body: JSON.stringify({
-        model: 'google/gemma-4-31b-it:free',
+        model: 'nvidia/nemotron-3-ultra-550b-a55b:free',
         messages: msgs,
         max_tokens: max_tokens || 8000
       })
