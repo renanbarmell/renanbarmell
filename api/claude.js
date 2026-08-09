@@ -20,7 +20,7 @@ export default async function handler(req, res) {
         'X-Title': 'PRF REVERSO'
       },
       body: JSON.stringify({
-        model: 'nvidia/nemotron-3-ultra-550b-a55b:free',
+        model: 'nvidia/nemotron-nano-9b-v2:free',
         messages: msgs,
         max_tokens: max_tokens || 8000
       })
