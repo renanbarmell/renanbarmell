@@ -9,7 +9,8 @@ export default async function handler(req, res) {
   try {
     const { system, messages, max_tokens } = req.body;
     const msgs = [];
-    if (system) msgs.push({ role: 'system', content: system });
+    if (system) msgs.push({ role: 'user', content: `[INSTRUÇÕES DO SISTEMA]\n${system}\n[FIM DAS INSTRUÇÕES]\n\nConfirme que entendeu respondendo apenas: entendido.` });
+    if (system) msgs.push({ role: 'assistant', content: 'entendido.' });
     msgs.push(...messages);
     const r = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
@@ -26,7 +27,7 @@ export default async function handler(req, res) {
       })
     });
     const data = await r.json();
-    if (data.error) throw new Error(data.error.message);
+    if (data.error) throw new Error(JSON.stringify(data.error));
     const text = data.choices?.[0]?.message?.content || '';
     res.status(200).json({ content: [{ type: 'text', text }] });
   } catch(e) {
