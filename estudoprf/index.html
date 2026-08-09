@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PRF — R.E.V.E.R.S.O.</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,Segoe UI,sans-serif;background:#0f1117;color:#e8e8e8;display:flex;flex-direction:column;height:100vh;overflow:hidden}
+
+/* HEADER */
+#header{background:linear-gradient(135deg,#1a1f2e,#0f1117);border-bottom:1px solid #1e3a5f;padding:14px 22px;display:flex;align-items:center;gap:14px;flex-shrink:0}
+#logo{background:linear-gradient(135deg,#1565C0,#0D47A1);border-radius:10px;padding:8px 12px;font-size:18px}
+#header-title{font-weight:800;font-size:16px;color:#fff}
+#header-sub{font-size:11px;color:#5b7fa6;letter-spacing:1px}
+#badges{margin-left:auto;display:flex;gap:4px}
+.bl{width:23px;height:23px;background:#1565C0;border-radius:4px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:10px;color:#fff}
+
+/* LAYOUT */
+#layout{display:flex;flex:1;overflow:hidden}
+
+/* SIDE */
+#side{background:#13161d;border-right:1px solid #1e2d42;display:flex;flex-direction:column;flex-shrink:0;transition:width .18s ease;overflow:hidden;width:268px}
+#side.collapsed{width:46px}
+#side-toggle{display:flex;align-items:center;padding:11px 10px;border-bottom:1px solid #1e2d42;gap:8px;cursor:pointer;user-select:none;flex-shrink:0}
+#sti{font-size:13px;color:#5b7fa6}
+#stl{font-size:11px;font-weight:700;color:#5b7fa6;letter-spacing:1px;white-space:nowrap}
+#side-list{flex:1;overflow-y:auto;padding:6px 4px}
+#side-empty{padding:20px 10px;font-size:12px;color:#3a4a5a;text-align:center;line-height:1.6}
+.grupo{margin-bottom:4px}
+.gh{display:flex;align-items:center;gap:7px;padding:8px;border-radius:7px;cursor:pointer;user-select:none;border-left:3px solid transparent}
+.gdot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.glabel{font-size:11px;font-weight:700;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gcnt{font-size:10px;margin-right:2px}
+.garr{font-size:10px}
+.gtemas{padding-left:10px;margin-top:2px;display:none}
+.gtemas.open{display:block}
+.titem{position:relative;padding:7px 28px 7px 10px;border-radius:6px;margin-bottom:2px;cursor:pointer;border-left:2px solid #1e2d42;transition:background .1s}
+.titem:hover{background:rgba(255,255,255,0.04)}
+.tnome{font-size:12px;color:#cdd8e3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.titem.ativo .tnome{color:#fff;font-weight:700}
+.tdel{position:absolute;top:50%;right:6px;transform:translateY(-50%);background:transparent;border:none;color:#3a4a5a;font-size:12px;cursor:pointer;padding:2px;line-height:1}
+.tdel:hover{color:#e53935}
+
+/* MAIN */
+#main{flex:1;overflow-y:auto;padding:22px}
+#inner{max-width:860px;margin:0 auto}
+
+/* SEPARADOR */
+.sep{display:flex;align-items:center;gap:12px;margin:0 0 20px}
+.sep-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,#1e3a5f,transparent)}
+.sep-badge{font-size:11px;font-weight:700;color:#5b7fa6;letter-spacing:1px;white-space:nowrap;padding:4px 12px;border:1px solid #1e3a5f;border-radius:20px;background:#13161d}
+
+/* FORM */
+#form-card{background:#16191f;border:1px solid #1e2d42;border-radius:14px;padding:20px;margin-bottom:20px}
+.field{margin-bottom:12px}
+label{display:block;font-size:11px;font-weight:700;color:#5b7fa6;letter-spacing:1px;margin-bottom:6px}
+input[type=text]{width:100%;padding:10px 13px;background:#0f1117;border:1px solid #1e3a5f;border-radius:8px;color:#e8e8e8;font-size:14px;outline:none;font-family:inherit}
+input[type=text]:focus{border-color:#1565C0}
+#btn-row{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}
+.btn-p{flex:1;padding:11px 0;background:linear-gradient(135deg,#1565C0,#0D47A1);border:none;border-radius:8px;color:#fff;font-weight:700;font-size:13px;cursor:pointer;min-width:160px;transition:opacity .2s}
+.btn-p:disabled{opacity:.45;cursor:not-allowed}
+.btn-s{padding:11px 16px;background:#1e2d42;border:1px solid #1e3a5f;border-radius:8px;color:#fff;font-weight:600;font-size:12px;cursor:pointer}
+.btn-s:hover{background:#243552}
+.btn-s.green{background:#1b5e20;border-color:#2e7d32}
+.btn-s.muted{color:#5b7fa6}
+#error-box{color:#e53935;font-size:13px;margin-top:12px;padding:8px 11px;background:#1a0a0a;border-radius:6px;border:1px solid #5a1a1a;display:none}
+
+/* LOADING ANIMADO */
+#loading-wrap{display:none;background:#16191f;border:1px solid #1e2d42;border-radius:14px;padding:40px 20px;text-align:center;margin-bottom:0}
+.spinner{width:44px;height:44px;border:3px solid #1e3a5f;border-top-color:#1565C0;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-dots{display:inline-flex;gap:6px;margin-top:8px}
+.dot{width:7px;height:7px;border-radius:50%;background:#1565C0;animation:pulse 1.2s ease-in-out infinite}
+.dot:nth-child(2){animation-delay:.2s}
+.dot:nth-child(3){animation-delay:.4s}
+@keyframes pulse{0%,80%,100%{opacity:.2;transform:scale(.8)}40%{opacity:1;transform:scale(1)}}
+#loading-label{font-size:13px;color:#5b7fa6;margin-bottom:10px}
+#loading-steps{font-size:11px;color:#3a4a5a;margin-top:12px;min-height:16px;transition:opacity .3s}
+
+/* PDF LOADING */
+#pdf-loading{display:none;background:#16191f;border:1px solid #1e2d42;border-radius:14px;padding:32px 20px;text-align:center;margin-top:16px}
+.pdf-spinner{width:36px;height:36px;border:3px solid #1e2d42;border-top-color:#C62828;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 12px}
+#pdf-status{font-size:13px;color:#5b7fa6}
+
+/* OUTPUT */
+#output-card{background:#16191f;border:1px solid #1e2d42;border-radius:14px;overflow:hidden;display:none}
+#output-header{background:#0f1117;border-bottom:1px solid #1e2d42;padding:12px 20px;display:flex;align-items:center;gap:10px}
+#odot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+#omateria{font-weight:800;font-size:15px;color:#fff}
+#otema{font-size:12px;color:#5b7fa6;margin-top:1px}
+#otema span{color:#90CAF9}
+#output-body{padding:20px}
+
+/* EMPTY */
+#empty-state{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.fc{background:#16191f;border:1px solid #1e2d42;border-radius:10px;padding:14px;text-align:center}
+.fi{font-size:19px;margin-bottom:5px}
+.ft{font-weight:700;font-size:12px;color:#90CAF9}
+.fd{font-size:11px;color:#3a4a5a;margin-top:2px}
+
+/* MARKDOWN — quebra de linha entre seções */
+#output-body h2{color:#90CAF9;font-size:14px;font-weight:800;margin:28px 0 10px;padding:7px 11px;background:rgba(21,101,192,0.12);border-left:3px solid #1565C0;border-radius:0 5px 5px 0}
+#output-body h2:first-child{margin-top:0}
+#output-body p{margin:4px 0;font-size:13px;line-height:1.75;color:#cdd8e3}
+#output-body ul{margin:6px 0 14px 0;padding-left:18px}
+#output-body li{font-size:13px;line-height:1.75;color:#cdd8e3;margin-bottom:5px}
+#output-body strong{color:#fff;font-weight:700}
+#output-body code{background:#1e2d42;padding:1px 5px;border-radius:4px;font-size:12px;color:#90CAF9}
+/* linha divisória entre seções */
+#output-body .sec-break{border:none;border-top:1px solid #1e2d42;margin:4px 0 0}
+
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:#0f1117}
+::-webkit-scrollbar-thumb{background:#1e3a5f;border-radius:4px}
+</style>
+</head>
+<body>
+
+<div id="header">
+  <div id="logo">🚔</div>
+  <div><div id="header-title">PRF — Método R.E.V.E.R.S.O.</div><div id="header-sub">ENGENHARIA REVERSA · BANCA CEBRASPE</div></div>
+  <div id="badges"></div>
+</div>
+
+<div id="layout">
+  <div id="side">
+    <div id="side-toggle"><div id="sti">◀</div><span id="stl">RESUMO POR MATÉRIA</span></div>
+    <div id="side-list"><div id="side-empty">Nenhum conteúdo ainda.<br>Gere o primeiro!</div></div>
+  </div>
+
+  <div id="main"><div id="inner">
+
+    <div id="form-card">
+      <div class="field"><label>MATÉRIA</label><input type="text" id="inp-mat" list="mat-list" placeholder="Ex: Direito Penal" autocomplete="off"/><datalist id="mat-list"></datalist></div>
+      <div class="field"><label>TEMA</label><input type="text" id="inp-tema" placeholder="Ex: Regimes de Cumprimento de Pena"/></div>
+      <div id="btn-row">
+        <button class="btn-p" id="btn-gerar">🎯 GERAR CONTEÚDO REVERSO</button>
+        <button class="btn-s" id="btn-pdf" style="display:none">📄 GERAR PDF VISUAL</button>
+        <button class="btn-s" id="btn-cop" style="display:none">📋 Copiar</button>
+        <button class="btn-s muted" id="btn-lmp" style="display:none">🗑</button>
+      </div>
+      <div id="error-box"></div>
+    </div>
+
+    <!-- LOADING ANIMADO -->
+    <div id="loading-wrap">
+      <div class="spinner"></div>
+      <div id="loading-label">Analisando provas CEBRASPE...</div>
+      <div class="loading-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+      <div id="loading-steps"></div>
+    </div>
+
+    <!-- SEPARADOR -->
+    <div class="sep" id="sep" style="display:none">
+      <div class="sep-line"></div><div class="sep-badge" id="sep-label">CONTEÚDO</div><div class="sep-line"></div>
+    </div>
+
+    <!-- OUTPUT -->
+    <div id="output-card">
+      <div id="output-header"><div id="odot"></div><div><div id="omateria"></div><div id="otema">Tema: <span id="otema-val"></span></div></div></div>
+      <div id="output-body"></div>
+    </div>
+
+    <!-- PDF LOADING -->
+    <div id="pdf-loading">
+      <div class="pdf-spinner"></div>
+      <div id="pdf-status">Gerando PDF visual...</div>
+    </div>
+
+    <!-- EMPTY -->
+    <div id="empty-state">
+      <div class="fc"><div class="fi">📌</div><div class="ft">Mapa do que cai</div><div class="fd">Frequência CEBRASPE</div></div>
+      <div class="fc"><div class="fi">⚠️</div><div class="ft">Pegadinhas</div><div class="fd">Falso vs. correto</div></div>
+      <div class="fc"><div class="fi">🎯</div><div class="ft">Questões-modelo</div><div class="fd">Certo/Errado + gabarito</div></div>
+      <div class="fc"><div class="fi">📄</div><div class="ft">PDF Visual</div><div class="fd">Gerado aqui mesmo</div></div>
+    </div>
+
+  </div></div>
+</div>
+
+<script>
+const MATERIAS = ["Português","Direito Constitucional","Direito Administrativo","Direito Penal","Direito Processual Penal","Legislação de Trânsito (CTB)","Direitos Humanos","Legislação Especial","Raciocínio Lógico","Informática","Inglês","Geografia do Brasil"];
+const COR = {"Português":"#43A047","Direito Constitucional":"#1565C0","Direito Administrativo":"#6A1B9A","Direito Penal":"#C62828","Direito Processual Penal":"#E65100","Legislação de Trânsito (CTB)":"#00838F","Direitos Humanos":"#AD1457","Legislação Especial":"#558B2F","Raciocínio Lógico":"#4527A0","Informática":"#00695C","Inglês":"#F57F17","Geografia do Brasil":"#2E7D32"};
+const cor = m => COR[m] || "#1565C0";
+
+const SYSTEM = `Você é um professor especialista em concursos públicos, foco total na banca CEBRASPE. Método R.E.V.E.R.S.O. — engenharia reversa pela banca.
+
+REGRAS ABSOLUTAS:
+- Baseie TODO o conteúdo nas questões reais já cobradas pela CEBRASPE
+- Sem enrolação, direto ao que cai na prova
+- Denso, técnico, preciso
+- Complete TODAS as seções abaixo sem interromper
+- Na seção de mnemônicos, seja ABUNDANTE: mínimo 4 técnicas diferentes
+
+ESTRUTURA OBRIGATÓRIA:
+
+## 📌 MAPA DO QUE CAI (CEBRASPE)
+Sub-tópicos por frequência (% aproximada).
+
+## 🔥 PONTOS CRÍTICOS
+Distinções e padrões recorrentes da banca.
+
+## 📚 CONTEÚDO ESSENCIAL
+Blocos temáticos com definição + o que importa + distinções.
+
+## ⚠️ PEGADINHAS CLÁSSICAS
+❌ FALSO: "[afirmação errada da banca]"
+✅ CORRETO: "[como é de fato]"
+
+## 📝 LEI SECA
+Art. X — "[texto literal cobrado]"
+
+## 🎯 QUESTÕES-MODELO CEBRASPE
+(  ) [afirmação]
+Gabarito: [CERTO/ERRADO] — [justificativa em 1 linha]
+
+## 🧠 MNEMÔNICOS E DICAS PARA DECORAR
+Forneça no mínimo 4 técnicas: acrônimos, frases-gatilho, associações visuais/absurdas, rimas, analogias do cotidiano, palavra-âncora, regras "se X então Y".`;
+
+const SYSTEM_PDF = `Você é um especialista em Python/reportlab. Gere um script Python COMPLETO e executável que cria um PDF de estudo estilo infográfico de concurso (como @neuronappoficial).
+
+REQUISITOS TÉCNICOS:
+- from reportlab.lib.pagesizes import A4, landscape; pagesize = landscape(A4)
+- Cores fixas: verde #2F9E44/fundo #EBFBEE, vermelho #E03131/fundo #FFF5F5, azul #1971C2/fundo #E7F5FF, amarelo #F5B400/fundo #FFF9DB, navy #12233F
+- Grade de cards numerados (badge circular + ícone vetorial + título + bullets em negrito+cor)
+- Cards de comparação com colunas ✗/✓ para pegadinhas
+- Faixa GRAVA: no rodapé
+- Página de post-its recortáveis (grid 4x3, rotação leve, sombra, borda tracejada)
+- Ícones vetoriais com primitivas reportlab (não emojis)
+- calc_card_height() antes de desenhar qualquer grade
+- Salvar em: OUTPUT_PATH (variável definida no início do script)
+- Finalizar com canvas.save()
+
+RETORNE APENAS o código Python puro, sem markdown, sem explicações, sem blocos de código.`;
+
+// Estado
+let historico=[], activeId=null, expanded={}, sideOpen=true;
+let conteudoAtual="", materiaAtual="", temaAtual="";
+
+// Init
+const dl = document.getElementById("mat-list");
+MATERIAS.forEach(m=>{const o=document.createElement("option");o.value=m;dl.appendChild(o);});
+"REVERSO".split("").forEach((l,i)=>{const d=document.createElement("div");d.className="bl";d.style.opacity=0.65+i*0.05;d.textContent=l;document.getElementById("badges").appendChild(d);});
+
+// Refs
+const inpMat   = document.getElementById("inp-mat");
+const inpTema  = document.getElementById("inp-tema");
+const btnGerar = document.getElementById("btn-gerar");
+const btnPDF   = document.getElementById("btn-pdf");
+const btnCop   = document.getElementById("btn-cop");
+const btnLmp   = document.getElementById("btn-lmp");
+const errBox   = document.getElementById("error-box");
+const loadWrap = document.getElementById("loading-wrap");
+const loadLbl  = document.getElementById("loading-label");
+const loadStep = document.getElementById("loading-steps");
+const sepEl    = document.getElementById("sep");
+const sepLbl   = document.getElementById("sep-label");
+const outCard  = document.getElementById("output-card");
+const outBody  = document.getElementById("output-body");
+const emptyEl  = document.getElementById("empty-state");
+const pdfLoad  = document.getElementById("pdf-loading");
+const pdfStat  = document.getElementById("pdf-status");
+const sideEl   = document.getElementById("side");
+const sideList = document.getElementById("side-list");
+const sideEmpty= document.getElementById("side-empty");
+
+// Loading steps animation
+const STEPS = ["Buscando questões da banca CEBRASPE...","Mapeando frequência por tópico...","Extraindo pegadinhas recorrentes...","Montando mnemônicos e macetes...","Finalizando conteúdo completo..."];
+let stepIdx=0, stepTimer=null;
+function startSteps(){stepIdx=0;loadStep.textContent=STEPS[0];stepTimer=setInterval(()=>{stepIdx=(stepIdx+1)%STEPS.length;loadStep.style.opacity=0;setTimeout(()=>{loadStep.textContent=STEPS[stepIdx];loadStep.style.opacity=1;},300);},2200);}
+function stopSteps(){clearInterval(stepTimer);loadStep.textContent="";}
+
+// Side toggle
+document.getElementById("side-toggle").addEventListener("click",()=>{
+  sideOpen=!sideOpen;
+  sideEl.classList.toggle("collapsed",!sideOpen);
+  document.getElementById("sti").textContent=sideOpen?"◀":"▶";
+  document.getElementById("stl").style.display=sideOpen?"":"none";
+});
+
+// md → html com quebras entre seções
+function md2html(text){
+  if(!text) return "";
+  let html="",inUl=false,firstH2=true;
+  for(let line of text.split("\n")){
+    line=line.replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>").replace(/`(.+?)`/g,"<code>$1</code>");
+    if(/^## /.test(line)){
+      if(inUl){html+="</ul>";inUl=false;}
+      if(!firstH2) html+='<hr class="sec-break"/>';
+      html+=`<h2>${line.replace(/^## /,"")}</h2>`;
+      firstH2=false;
+    } else if(/^[-•❌✅] /.test(line)||/^\(\s*\)/.test(line)){
+      if(!inUl){html+="<ul>";inUl=true;}
+      html+=`<li>${line.replace(/^[-•❌✅] /,"")}</li>`;
+    } else if(line.trim()===""){
+      if(inUl){html+="</ul>";inUl=false;}
+    } else {
+      if(inUl){html+="</ul>";inUl=false;}
+      html+=`<p>${line}</p>`;
+    }
+  }
+  if(inUl) html+="</ul>";
+  return html;
+}
+
+// Render side
+function renderSide(){
+  const ordem=[],mapa={};
+  for(const item of historico){
+    if(!mapa[item.materia]){mapa[item.materia]=[];ordem.push(item.materia);}
+    mapa[item.materia].push(item);
+  }
+  sideEmpty.style.display=historico.length===0?"":"none";
+  sideList.querySelectorAll(".grupo").forEach(el=>el.remove());
+  ordem.forEach(mat=>{
+    const c=cor(mat),itens=mapa[mat],aberto=!!expanded[mat];
+    const g=document.createElement("div");g.className="grupo";
+    const gh=document.createElement("div");gh.className="gh";
+    gh.style.cssText=`background:${c}18;border-left-color:${c}`;
+    gh.innerHTML=`<div class="gdot" style="background:${c}"></div><div class="glabel" style="color:${c}">${mat}</div><div class="gcnt" style="color:${c}99">${itens.length}</div><div class="garr" style="color:${c}99">${aberto?"▾":"▸"}</div>`;
+    gh.addEventListener("click",()=>{expanded[mat]=!expanded[mat];renderSide();});
+    g.appendChild(gh);
+    const gt=document.createElement("div");gt.className="gtemas"+(aberto?" open":"");
+    itens.forEach(item=>{
+      const ativo=activeId===item.id;
+      const ti=document.createElement("div");ti.className="titem"+(ativo?" ativo":"");
+      if(ativo){ti.style.background=`${c}22`;ti.style.borderLeftColor=c;}
+      ti.innerHTML=`<div class="tnome">${item.tema}</div><button class="tdel">✕</button>`;
+      ti.addEventListener("click",()=>carregarItem(item));
+      ti.querySelector(".tdel").addEventListener("click",e=>{e.stopPropagation();removerItem(item.id);});
+      gt.appendChild(ti);
+    });
+    g.appendChild(gt);sideList.appendChild(g);
+  });
+}
+
+function mostrarOutput(){
+  emptyEl.style.display="none";loadWrap.style.display="none";
+  sepEl.style.display="flex";outCard.style.display="block";
+  btnPDF.style.display="";btnCop.style.display="";btnLmp.style.display="";
+  sepLbl.textContent=materiaAtual.toUpperCase();
+  const c=cor(materiaAtual);
+  document.getElementById("odot").style.background=c;
+  document.getElementById("omateria").textContent=materiaAtual;
+  document.getElementById("otema-val").textContent=temaAtual;
+  outBody.innerHTML=md2html(conteudoAtual);
+}
+
+function carregarItem(item){inpMat.value=item.materia;inpTema.value=item.tema;conteudoAtual=item.conteudo;materiaAtual=item.materia;temaAtual=item.tema;activeId=item.id;mostrarOutput();renderSide();}
+
+function removerItem(id){historico=historico.filter(i=>i.id!==id);if(activeId===id){activeId=null;conteudoAtual="";limpar();}renderSide();}
+
+function limpar(){
+  inpMat.value="";inpTema.value="";conteudoAtual="";materiaAtual="";temaAtual="";activeId=null;
+  outCard.style.display="none";loadWrap.style.display="none";pdfLoad.style.display="none";
+  sepEl.style.display="none";emptyEl.style.display="grid";
+  btnPDF.style.display="none";btnCop.style.display="none";btnLmp.style.display="none";
+  errBox.style.display="none";renderSide();
+}
+
+// GERAR CONTEÚDO
+btnGerar.addEventListener("click",async()=>{
+  const mat=inpMat.value.trim(),tem=inpTema.value.trim();
+  if(!mat||!tem){errBox.textContent="⚠️ Preencha matéria e tema.";errBox.style.display="block";return;}
+  errBox.style.display="none";
+  outCard.style.display="none";sepEl.style.display="none";emptyEl.style.display="none";pdfLoad.style.display="none";
+  loadWrap.style.display="block";loadLbl.textContent="Analisando provas CEBRASPE...";startSteps();
+  btnGerar.disabled=true;btnGerar.textContent="⏳ Gerando...";
+  try{
+    const res=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-6",max_tokens:8000,system:SYSTEM,messages:[{role:"user",content:`Matéria: ${mat}\nTema: ${tem}\n\nGere o conteúdo COMPLETO com todas as seções.`}]})});
+    const data=await res.json();
+    if(data.error) throw new Error(data.error.message);
+    const texto=data.content?.map(b=>b.text||"").join("")||"";
+    const id=Date.now();
+    conteudoAtual=texto;materiaAtual=mat;temaAtual=tem;activeId=id;
+    historico.unshift({id,materia:mat,tema:tem,conteudo:texto});
+    expanded[mat]=true;
+    stopSteps();mostrarOutput();renderSide();
+  }catch(e){
+    stopSteps();loadWrap.style.display="none";emptyEl.style.display="grid";
+    errBox.textContent="Erro: "+(e.message||"Tente novamente.");errBox.style.display="block";
+  }finally{
+    btnGerar.disabled=false;btnGerar.textContent="🎯 GERAR CONTEÚDO REVERSO";
+  }
+});
+
+// GERAR PDF — via API diretamente no artefato
+btnPDF.addEventListener("click",async()=>{
+  if(!conteudoAtual) return;
+  btnPDF.disabled=true;btnPDF.textContent="⏳ Gerando PDF...";
+  pdfLoad.style.display="block";pdfStat.textContent="Montando estrutura do PDF...";
+
+  const slug=temaAtual.toLowerCase().replace(/[^a-z0-9]+/g,"-").slice(0,40);
+
+  try{
+    // 1. Pede o script Python para a API
+    pdfStat.textContent="Gerando script do infográfico...";
+    const r1=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-6",max_tokens:8000,system:SYSTEM_PDF,messages:[{role:"user",content:`Matéria: ${materiaAtual}\nTema: ${temaAtual}\nNome do arquivo: mapa-${slug}.pdf\nConteúdo:\n${conteudoAtual}`}]})});
+    const d1=await r1.json();
+    if(d1.error) throw new Error(d1.error.message);
+    const script=d1.content?.map(b=>b.text||"").join("")||"";
+
+    // 2. Envia ao chat via sendPrompt para Claude executar e devolver o PDF
+    const msgChat=`[EXECUTAR_SCRIPT_PDF]\nFilename: mapa-${slug}\n\nScript:\n${script}`;
+    if(typeof sendPrompt==="function"){
+      sendPrompt(msgChat);
+      pdfStat.textContent="✅ Script enviado! O PDF aparecerá no chat em instantes.";
+      setTimeout(()=>{pdfLoad.style.display="none";},4000);
+    } else {
+      // fallback: baixa o script diretamente
+      const blob=new Blob([script],{type:"text/plain"});
+      const a=document.createElement("a");a.href=URL.createObjectURL(blob);
+      a.download=`gerar-mapa-${slug}.py`;a.click();
+      pdfStat.textContent="Script .py baixado — execute com python3 para gerar o PDF.";
+      setTimeout(()=>{pdfLoad.style.display="none";},5000);
+    }
+  }catch(e){
+    pdfStat.textContent="Erro: "+(e.message||"Tente novamente.");
+    setTimeout(()=>{pdfLoad.style.display="none";},4000);
+  }finally{
+    btnPDF.disabled=false;btnPDF.textContent="📄 GERAR PDF VISUAL";
+  }
+});
+
+btnCop.addEventListener("click",()=>{
+  navigator.clipboard.writeText(`${materiaAtual}\nTema: ${temaAtual}\n${"─".repeat(50)}\n\n${conteudoAtual}`)
+    .then(()=>{btnCop.textContent="✅ Copiado";btnCop.classList.add("green");setTimeout(()=>{btnCop.textContent="📋 Copiar";btnCop.classList.remove("green");},2000);});
+});
+btnLmp.addEventListener("click",limpar);
+inpTema.addEventListener("keydown",e=>{if(e.key==="Enter")btnGerar.click();});
+</script>
+</body>
+</html>
